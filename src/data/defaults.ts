@@ -1,4 +1,4 @@
-import type { Category } from '@/types';
+import type { Category, Account } from '@/types';
 
 export const DEFAULT_CATEGORIES: Category[] = [
     // Income categories
@@ -25,7 +25,7 @@ export const DEFAULT_CATEGORIES: Category[] = [
     { id: 'cat_other_expense', name: 'Outros', icon: 'MoreHorizontal', color: '#94A3B8', type: 'expense', isDefault: true },
 ];
 
-export const DEFAULT_ACCOUNTS = [
+export const DEFAULT_ACCOUNTS: Account[] = [
     { id: 'acc_picpay', name: 'Picpay', type: 'bank' as const, balance: 3937.61, currency: 'BRL' as const, color: '#21C25E', icon: 'Building2' },
     { id: 'acc_99pay', name: '99Pay', type: 'bank' as const, balance: 2273.92, currency: 'BRL' as const, color: '#F5A623', icon: 'Wallet' },
     { id: 'acc_mercadopago', name: 'Mercado Pago', type: 'bank' as const, balance: -1648.82, currency: 'BRL' as const, color: '#009EE3', icon: 'Building2' },
