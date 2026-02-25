@@ -7,3 +7,4 @@ export { AIChatDrawer } from './AIChatDrawer';
 export { RecurringRules } from './RecurringRules';
 export { Settings } from './Settings';
 export { DataImportExport } from './DataImportExport';
+export { Auth } from './Auth';

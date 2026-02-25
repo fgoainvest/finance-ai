@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { Layout } from '@/components/layout';
-import { Dashboard, TransactionsList, TransactionForm, Accounts, Categories, AIChatDrawer, RecurringRules, Settings } from '@/components/features';
+import { Dashboard, TransactionsList, TransactionForm, Accounts, Categories, AIChatDrawer, RecurringRules, Settings, Auth } from '@/components/features';
+import { useAuth } from '@/contexts/AuthContext';
 import type { Transaction } from '@/types';
+import { Loader2 } from 'lucide-react';
 
 type Page = 'dashboard' | 'transactions' | 'categories' | 'accounts' | 'settings' | 'recurring';
 
@@ -15,9 +17,22 @@ const pageTitles: Record<Page, { title: string; subtitle?: string }> = {
 };
 
 function App() {
+  const { user, loading } = useAuth();
   const [currentPage, setCurrentPage] = useState<Page>('dashboard');
   const [isTransactionModalOpen, setIsTransactionModalOpen] = useState(false);
   const [editingTransaction, setEditingTransaction] = useState<Transaction | null>(null);
+
+  if (loading) {
+    return (
+      <div className="h-screen w-screen flex items-center justify-center bg-[rgb(var(--bg-primary))]">
+        <Loader2 className="h-8 w-8 text-indigo-500 animate-spin" />
+      </div>
+    );
+  }
+
+  if (!user) {
+    return <Auth />;
+  }
 
   const handleNavigate = (page: string) => {
     setCurrentPage(page as Page);
