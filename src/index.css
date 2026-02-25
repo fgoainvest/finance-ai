@@ -1,0 +1,200 @@
+@import "tailwindcss";
+
+/* ===== Design Tokens ===== */
+@theme {
+  /* Fonts */
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-display: 'Outfit', system-ui, sans-serif;
+
+  /* Animations */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* ===== CSS Variables for Theme (Neon Future) ===== */
+:root {
+  /* Light Mode (Clean Tech) */
+  --bg-primary: 248 250 252;
+  /* Slate 50 */
+  --bg-secondary: 241 245 249;
+  /* Slate 100 */
+  --bg-tertiary: 226 232 240;
+  /* Slate 200 */
+
+  --bg-card: 255 255 255;
+  --bg-card-hover: 248 250 252;
+
+  --text-primary: 15 23 42;
+  /* Slate 900 */
+  --text-secondary: 51 65 85;
+  /* Slate 700 */
+  --text-muted: 100 116 139;
+  /* Slate 500 */
+
+  --border-primary: 226 232 240;
+  --border-secondary: 241 245 249;
+
+  /* Vibrant Accents */
+  --accent-primary: 99 102 241;
+  /* Indigo 500 */
+  --accent-secondary: 168 85 247;
+  /* Purple 500 */
+  --accent-glow: 99 102 241;
+
+  --income: 16 185 129;
+  /* Emerald 500 */
+  --expense: 239 68 68;
+  /* Red 500 */
+  --transfer: 59 130 246;
+  /* Blue 500 */
+}
+
+.dark {
+  /* Dark Mode (Deep Space / Neon) */
+  --bg-primary: 3 7 18;
+  /* Gray 950 (Almost Black) */
+  --bg-secondary: 15 23 42;
+  /* Slate 900 */
+  --bg-tertiary: 30 41 59;
+  /* Slate 800 */
+
+  --bg-card: 17 24 39;
+  /* Gray 900 */
+  --bg-card-hover: 31 41 55;
+  /* Gray 800 */
+
+  --text-primary: 248 250 252;
+  /* Slate 50 */
+  --text-secondary: 148 163 184;
+  /* Slate 400 */
+  --text-muted: 100 116 139;
+  /* Slate 500 */
+
+  --border-primary: 31 41 55;
+  /* Gray 800 */
+  --border-secondary: 17 24 39;
+  /* Gray 900 */
+
+  /* Neon Accents */
+  --accent-primary: 139 92 246;
+  /* Violet 500 */
+  --accent-secondary: 6 182 212;
+  /* Cyan 500 */
+  --accent-glow: 139 92 246;
+
+  --income: 52 211 153;
+  /* Emerald 400 */
+  --expense: 248 113 113;
+  /* Red 400 */
+  --transfer: 96 165 250;
+  /* Blue 400 */
+}
+
+/* ===== Base Styles ===== */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: rgb(var(--bg-primary));
+  color: rgb(var(--text-primary));
+  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Background Mesh Gradient */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 15% 50%, rgba(var(--accent-primary), 0.08), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(var(--accent-secondary), 0.08), transparent 25%);
+  pointer-events: none;
+}
+
+@utility glass {
+  background: rgba(var(--bg-card), 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(var(--border-primary), 0.5);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+  .dark & {
+    background: rgba(17, 24, 39, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@utility glass-card {
+  @apply glass rounded-2xl transition-all duration-300;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-color: rgba(var(--accent-primary), 0.3);
+  }
+
+  .dark &:hover {
+    box-shadow: 0 0 20px rgba(var(--accent-glow), 0.15);
+    border-color: rgba(var(--accent-primary), 0.4);
+  }
+}
+
+/* ===== Typography ===== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(var(--text-muted), 0.3);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--accent-primary), 0.5);
+}
+
+/* ===== Focus styles ===== */
+*:focus-visible {
+  outline: 2px solid rgb(var(--accent-primary));
+  outline-offset: 2px;
+}

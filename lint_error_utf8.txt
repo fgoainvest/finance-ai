@@ -1,0 +1,104 @@
+﻿
+> financeiro-ai@0.0.0 lint
+> eslint .
+
+
+C:\Users\User\Downloads\financeiro-ai\src\components\features\AIChatDrawer.tsx
+   2:10  error    'MessageSquare' is defined but never used                                                                                                                                                          @typescript-eslint/no-unused-vars
+  14:11  warning  The 'messages' logical expression could make the dependencies of useEffect Hook (at line 18) change on every render. To fix this, wrap the initialization of 'messages' in its own useMemo() Hook  react-hooks/exhaustive-deps
+
+C:\Users\User\Downloads\financeiro-ai\src\components\features\Accounts.tsx
+  4:16  error  'CardHeader' is defined but never used  @typescript-eslint/no-unused-vars
+  4:28  error  'CardTitle' is defined but never used   @typescript-eslint/no-unused-vars
+
+C:\Users\User\Downloads\financeiro-ai\src\components\features\Categories.tsx
+  4:16  error  'CardContent' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\User\Downloads\financeiro-ai\src\components\features\Dashboard.tsx
+  205:60  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  258:46  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  259:60  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\User\Downloads\financeiro-ai\src\components\features\RecurringRules.tsx
+  5:36  error  'ArrowRight' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\User\Downloads\financeiro-ai\src\components\layout\BottomNav.tsx
+  6:5  error  'Target' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\User\Downloads\financeiro-ai\src\components\layout\Sidebar.tsx
+  6:5  error  'Target' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\User\Downloads\financeiro-ai\src\components\ui\Card.tsx
+  55:18  error  An interface declaring no members is equivalent to its supertype  @typescript-eslint/no-empty-object-type
+  65:18  error  An interface declaring no members is equivalent to its supertype  @typescript-eslint/no-empty-object-type
+  79:18  error  An interface declaring no members is equivalent to its supertype  @typescript-eslint/no-empty-object-type
+
+C:\Users\User\Downloads\financeiro-ai\src\contexts\AppContext.tsx
+  103:34  error    Compilation Skipped: Existing memoization could not be preserved
+
+React Compiler has skipped optimizing this component because the existing manual memoization could not be preserved. The inferred dependencies did not match the manually specified dependencies, which could cause the value to change more or less frequently than expected. The inferred dependency was `state`, but the source dependencies were [state.accounts]. Inferred less specific property than source.
+
+C:\Users\User\Downloads\financeiro-ai\src\contexts\AppContext.tsx:103:34
+  101 |
+  102 |     // Computed values
+> 103 |     const totalBalance = useMemo(() => accountService.getTotalBalance(state), [state.accounts]);
+      |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not preserve existing manual memoization
+  104 |
+  105 |     const { monthlyIncome, monthlyExpenses } = useMemo(() => {
+  106 |         const now = new Date();                                                                                                                                                                                                                                                                                                                                                                                                             react-hooks/preserve-manual-memoization
+  103:79  warning  React Hook useMemo has a missing dependency: 'state'. Either include it or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 react-hooks/exhaustive-deps
+  105:56  error    Compilation Skipped: Existing memoization could not be preserved
+
+React Compiler has skipped optimizing this component because the existing manual memoization could not be preserved. The inferred dependencies did not match the manually specified dependencies, which could cause the value to change more or less frequently than expected. The inferred dependency was `state`, but the source dependencies were [state.transactions]. Inferred less specific property than source.
+
+C:\Users\User\Downloads\financeiro-ai\src\contexts\AppContext.tsx:105:56
+  103 |     const totalBalance = useMemo(() => accountService.getTotalBalance(state), [state.accounts]);
+  104 |
+> 105 |     const { monthlyIncome, monthlyExpenses } = useMemo(() => {
+      |                                                        ^^^^^^^
+> 106 |         const now = new Date();
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 107 |         const monthStart = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
+      ÔÇª
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 119 |         return { monthlyIncome: income, monthlyExpenses: expenses };
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 120 |     }, [state.transactions]);
+      | ^^^^^^ Could not preserve existing manual memoization
+  121 |
+  122 |     // Helper functions
+  123 |     const getCategoryById = useCallback(  react-hooks/preserve-manual-memoization
+  120:8   warning  React Hook useMemo has a missing dependency: 'state'. Either include it or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 react-hooks/exhaustive-deps
+  151:17  error    Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         react-refresh/only-export-components
+
+C:\Users\User\Downloads\financeiro-ai\src\contexts\ThemeContext.tsx
+  47:13  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\User\Downloads\financeiro-ai\src\contexts\ThemeContext.tsx:47:13
+  45 |         if (theme === 'system') {
+  46 |             const systemTheme = getSystemTheme();
+> 47 |             setResolvedTheme(systemTheme);
+     |             ^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  48 |             root.classList.toggle('dark', systemTheme === 'dark');
+  49 |         } else {
+  50 |             setResolvedTheme(theme);  react-hooks/set-state-in-effect
+  87:17  error  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         react-refresh/only-export-components
+
+C:\Users\User\Downloads\financeiro-ai\src\services\ai.ts
+  10:5   error  'genAI' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  42:97  error  Unexpected any. Specify a different type    @typescript-eslint/no-explicit-any
+
+C:\Users\User\Downloads\financeiro-ai\src\services\recurring.ts
+   1:25  error  'RecurringRule' is defined but never used        @typescript-eslint/no-unused-vars
+   1:40  error  'Transaction' is defined but never used          @typescript-eslint/no-unused-vars
+  21:17  error  'hasChanges' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+Ô£û 26 problems (23 errors, 3 warnings)
+
+
