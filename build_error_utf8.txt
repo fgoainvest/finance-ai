@@ -1,0 +1,72 @@
+﻿
+> financeiro-ai@0.0.0 build
+> tsc -b && vite build
+
+[36mvite v7.3.1 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32mÔ£ô[39m 7 modules transformed.
+node.exe : [31mÔ£ù[39m Build 
+failed in 144ms
+No linha:1 caractere:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~
+    + CategoryInfo          : No 
+   tSpecified: ([31mÔ£ù[39m B  
+  uild failed in 144ms:String)   
+  [], RemoteException
+    + FullyQualifiedErrorId : Na 
+   tiveCommandError
+ 
+[31merror during build:
+[31m[@tailwindcss/vite:generate:
+build] Cannot apply unknown 
+utility class `glass`[31m
+file: [36mC:/Users/User/Download
+s/financeiro-ai/src/index.css[31
+m
+    at onInvalidCandidate (file:/
+//C:/Users/User/Downloads/finance
+iro-ai/node_modules/tailwindcss/d
+ist/chunk-CT46QCH7.mjs:21:1511)
+    at Ce (file:///C:/Users/User/
+Downloads/financeiro-ai/node_modu
+les/tailwindcss/dist/chunk-CT46QC
+H7.mjs:16:36326)
+    at file:///C:/Users/User/Down
+loads/financeiro-ai/node_modules/
+tailwindcss/dist/chunk-CT46QCH7.m
+js:21:355
+    at br (file:///C:/Users/User/
+Downloads/financeiro-ai/node_modu
+les/tailwindcss/dist/chunk-CT46QC
+H7.mjs:3:1718)
+    at I (file:///C:/Users/User/D
+ownloads/financeiro-ai/node_modul
+es/tailwindcss/dist/chunk-CT46QCH
+7.mjs:3:1377)
+    at Ae (file:///C:/Users/User/
+Downloads/financeiro-ai/node_modu
+les/tailwindcss/dist/chunk-CT46QC
+H7.mjs:21:172)
+    at Wi (file:///C:/Users/User/
+Downloads/financeiro-ai/node_modu
+les/tailwindcss/dist/chunk-CT46QC
+H7.mjs:38:294)
+    at async Za (file:///C:/Users
+/User/Downloads/financeiro-ai/nod
+e_modules/tailwindcss/dist/chunk-
+CT46QCH7.mjs:38:631)
+    at async rf (file:///C:/Users
+/User/Downloads/financeiro-ai/nod
+e_modules/tailwindcss/dist/chunk-
+CT46QCH7.mjs:38:1406)
+    at async lu (file:///C:/Users
+/User/Downloads/financeiro-ai/nod
+e_modules/@tailwindcss/node/dist/
+index.mjs:10:3458)[39m
+
