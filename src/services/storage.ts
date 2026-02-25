@@ -74,7 +74,7 @@ function mergeCategories(userCategories: Category[], defaults: Category[]): Cate
 /**
  * Merge user accounts with default accounts
  */
-function mergeAccounts(userAccounts: typeof DEFAULT_ACCOUNTS, defaults: typeof DEFAULT_ACCOUNTS): typeof DEFAULT_ACCOUNTS {
+function mergeAccounts(userAccounts: Account[], defaults: Account[]): Account[] {
     const userIds = new Set(userAccounts.map(a => a.id));
     const missingDefaults = defaults.filter(d => !userIds.has(d.id));
     return [...userAccounts, ...missingDefaults];
