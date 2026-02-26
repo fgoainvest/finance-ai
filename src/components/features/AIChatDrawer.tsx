@@ -268,13 +268,18 @@ export function AIChatDrawer() {
 
             setChatHistory(prev => [...prev, { role: 'assistant' as const, content: reply }]);
 
-        } catch (error) {
+        } catch (error: any) {
             console.error(error);
+            const errorMessage = error.message || 'Ocorreu um erro desconhecido.';
             dispatch({
                 type: 'ADD_CHAT_MESSAGE',
-                payload: { role: 'assistant', content: 'Ocorreu um erro. Tente novamente.' }
+                payload: {
+                    role: 'assistant',
+                    content: `❌ **Erro na IA:** ${errorMessage}\n\nVerifique se sua chave de API nas configurações está correta e se você tem saldo no OpenRouter.`
+                }
             });
-        } finally {
+        }
+        finally {
             setIsLoading(false);
         }
     };
