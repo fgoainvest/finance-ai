@@ -1,7 +1,7 @@
 import { createContext, useContext, useReducer, useEffect, useCallback, useMemo } from 'react';
 import type { ReactNode } from 'react';
 import type { AppState, Transaction, Account, Category, UserSettings, ChatMessage, RecurringRule } from '@/types';
-import { loadState, saveState, transactionService, accountService, categoryService, settingsService, chatService, recurringService } from '@/services/storage';
+import { loadState, saveState, transactionService, accountService, categoryService, settingsService, chatService, recurringService, importService } from '@/services/storage';
 import { recurringProcessor } from '@/services/recurring';
 
 // ===== Actions =====
@@ -22,7 +22,8 @@ type Action =
     | { type: 'ADD_RECURRING_RULE'; payload: Omit<RecurringRule, 'id' | 'createdAt' | 'lastGenerated'> }
     | { type: 'UPDATE_RECURRING_RULE'; payload: { id: string; updates: Partial<RecurringRule> } }
     | { type: 'DELETE_RECURRING_RULE'; payload: string }
-    | { type: 'CHECK_RECURRING_RULES' };
+    | { type: 'CHECK_RECURRING_RULES' }
+    | { type: 'BATCH_IMPORT_TRANSACTIONS'; payload: any[] };
 
 // ===== Reducer =====
 function appReducer(state: AppState, action: Action): AppState {
@@ -61,6 +62,8 @@ function appReducer(state: AppState, action: Action): AppState {
             return recurringService.delete(state, action.payload);
         case 'CHECK_RECURRING_RULES':
             return recurringProcessor.processDueRules(state);
+        case 'BATCH_IMPORT_TRANSACTIONS':
+            return importService.batchImport(state, action.payload);
         default:
             return state;
     }

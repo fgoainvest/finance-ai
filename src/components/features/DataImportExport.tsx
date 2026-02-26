@@ -246,26 +246,15 @@ export function DataImportExport() {
 
     const handleConfirmImport = () => {
         if (!importResult || importResult.valid.length === 0) return;
-        let successCount = 0;
-        importResult.valid.forEach(t => {
-            if (!t.accountId || !t.categoryId) return; // skip broken rows
-            dispatch({
-                type: 'ADD_TRANSACTION',
-                payload: {
-                    accountId: t.accountId,
-                    type: t.type,
-                    amount: t.amount,
-                    currency: t.currency,
-                    description: t.description,
-                    categoryId: t.categoryId,
-                    date: t.date,
-                    notes: t.notes || undefined,
-                    isRecurring: false,
-                },
-            });
-            successCount++;
+
+        // Use the new batch action which handles auto-creation of missing accounts/categories
+        // We pass the entire list of valid parsed rows.
+        dispatch({
+            type: 'BATCH_IMPORT_TRANSACTIONS',
+            payload: importResult.valid
         });
-        showToast(`${successCount} transações importadas com sucesso! 🎉`, 'success');
+
+        showToast(`${importResult.valid.length} transações processadas com sucesso! 🎉`, 'success');
         setImportResult(null);
         if (fileInputRef.current) fileInputRef.current.value = '';
     };
