@@ -21,17 +21,18 @@ Acesse: **http://localhost:5173**
 
 ---
 
-## 🔑 Configurando o Assistente de IA (Importante!)
+## 🔑 Configurando o Assistente de IA (OpenRouter)
 
-1. Acesse [aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
-2. Crie uma conta Google (gratuita) e gere uma nova API Key
+1. Acesse [openrouter.ai](https://openrouter.ai/keys)
+2. Crie uma conta e gere uma nova API Key
 3. Edite o arquivo `.env` na raiz do projeto:
    ```
-   VITE_GEMINI_API_KEY=AIza...sua_chave_aqui
+   VITE_OPENROUTER_API_KEY=sk-or-v1-...sua_chave_aqui
+   VITE_OPENROUTER_MODEL=google/gemini-2.5-flash-lite
    ```
 4. Reinicie o servidor de desenvolvimento (`npm run dev`)
 
-> 💡 Sem a API Key, o assistente de IA não funcionará, mas todas as demais funções continuam disponíveis.
+> 💡 O sistema usa o OpenRouter para unificar o acesso aos modelos. Recomendamos o modelo `google/gemini-2.5-flash-lite` por ser mais atual e eficiente.
 
 ---
 
