@@ -203,9 +203,9 @@ export const accountService = {
     getById: (state: AppState, id: string): Account | undefined =>
         state.accounts.find(a => a.id === id),
 
-    create: (state: AppState, account: Omit<Account, 'id'>): AppState => ({
+    create: (state: AppState, account: Omit<Account, 'id'> & { id?: string }): AppState => ({
         ...state,
-        accounts: [...state.accounts, { ...account, id: crypto.randomUUID() }],
+        accounts: [...state.accounts, { ...account, id: account.id || crypto.randomUUID() }],
     }),
 
     update: (state: AppState, id: string, updates: Partial<Account>): AppState => ({
@@ -232,9 +232,9 @@ export const categoryService = {
     getByType: (state: AppState, type: 'income' | 'expense'): Category[] =>
         state.categories.filter(c => c.type === type),
 
-    create: (state: AppState, category: Omit<Category, 'id' | 'isDefault'>): AppState => ({
+    create: (state: AppState, category: Omit<Category, 'id' | 'isDefault'> & { id?: string }): AppState => ({
         ...state,
-        categories: [...state.categories, { ...category, id: crypto.randomUUID(), isDefault: false }],
+        categories: [...state.categories, { ...category, id: category.id || crypto.randomUUID(), isDefault: false }],
     }),
 
     update: (state: AppState, id: string, updates: Partial<Category>): AppState => ({
@@ -311,4 +311,73 @@ export const recurringService = {
         ...state,
         recurringRules: state.recurringRules.filter(r => r.id !== id),
     }),
+};
+
+// ===== Batch Import Operations =====
+export const importService = {
+    batchImport: (state: AppState, transactions: any[]): AppState => {
+        let newState = { ...state };
+        const accountCache = new Map<string, string>();
+        const categoryCache = new Map<string, string>();
+
+        transactions.forEach(t => {
+            let accountId = t.accountId;
+            if (!accountId && t.accountLabel) {
+                const name = t.accountLabel.trim();
+                const existing = newState.accounts.find(a => a.name.toLowerCase() === name.toLowerCase());
+                if (existing) {
+                    accountId = existing.id;
+                } else if (accountCache.has(name)) {
+                    accountId = accountCache.get(name)!;
+                } else {
+                    const newId = crypto.randomUUID();
+                    newState = accountService.create(newState, {
+                        id: newId,
+                        name,
+                        type: 'bank',
+                        balance: 0,
+                        currency: t.currency || 'BRL',
+                        color: '#3B82F6',
+                        icon: 'Wallet'
+                    } as any);
+                    accountId = newId;
+                    accountCache.set(name, newId);
+                }
+            }
+
+            let categoryId = t.categoryId;
+            if (!categoryId && t.categoryLabel) {
+                const name = t.categoryLabel.trim();
+                const key = `${name}:${t.type}`;
+                const existing = newState.categories.find(c => c.name.toLowerCase() === name.toLowerCase() && c.type === t.type);
+                if (existing) {
+                    categoryId = existing.id;
+                } else if (categoryCache.has(key)) {
+                    categoryId = categoryCache.get(key)!;
+                } else {
+                    const newId = crypto.randomUUID();
+                    newState = categoryService.create(newState, {
+                        id: newId,
+                        name,
+                        type: t.type,
+                        icon: 'Tag',
+                        color: t.type === 'income' ? '#10B981' : '#F97316'
+                    } as any);
+                    categoryId = newId;
+                    categoryCache.set(key, newId);
+                }
+            }
+
+            if (accountId && categoryId) {
+                newState = transactionService.create(newState, {
+                    ...t,
+                    accountId,
+                    categoryId,
+                    isRecurring: false
+                });
+            }
+        });
+
+        return newState;
+    }
 };
