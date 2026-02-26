@@ -38,12 +38,28 @@ export const supabaseService = {
         return { data, error };
     },
 
+    async createTransactionsBatch(transactions: any[]) {
+        const { data, error } = await supabase
+            .from('transactions')
+            .insert(transactions)
+            .select();
+        return { data, error };
+    },
+
     // Accounts
     async getAccounts() {
         const { data, error } = await supabase
             .from('accounts')
             .select('*')
             .order('name');
+        return { data, error };
+    },
+
+    async createAccount(account: any) {
+        const { data, error } = await supabase
+            .from('accounts')
+            .insert([account])
+            .select();
         return { data, error };
     },
 
@@ -61,6 +77,14 @@ export const supabaseService = {
             .from('categories')
             .select('*')
             .order('name');
+        return { data, error };
+    },
+
+    async createCategory(category: any) {
+        const { data, error } = await supabase
+            .from('categories')
+            .insert([category])
+            .select();
         return { data, error };
     }
 };
