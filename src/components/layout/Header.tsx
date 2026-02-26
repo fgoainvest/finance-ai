@@ -11,7 +11,7 @@ export function Header({ title, subtitle }: HeaderProps) {
     const { resolvedTheme, toggleTheme } = useTheme();
 
     return (
-        <header className="sticky top-0 z-30 bg-[rgb(var(--bg-primary))]/80 backdrop-blur-md border-b border-[rgb(var(--border-secondary))]">
+        <header className="sticky top-0 z-30 bg-bg-primary/80 backdrop-blur-md border-b border-border-secondary">
             <div className="flex items-center justify-between h-16 px-4 md:px-6">
                 {/* Left - Title (Mobile shows logo) */}
                 <div className="flex items-center gap-3">
@@ -22,11 +22,11 @@ export function Header({ title, subtitle }: HeaderProps) {
                         </span>
                     </div>
                     <div className="hidden md:block">
-                        <h1 className="font-display font-semibold text-xl text-[rgb(var(--text-primary))]">
+                        <h1 className="font-display font-semibold text-xl text-text-primary">
                             {title}
                         </h1>
                         {subtitle && (
-                            <p className="text-sm text-[rgb(var(--text-muted))]">{subtitle}</p>
+                            <p className="text-sm text-text-muted">{subtitle}</p>
                         )}
                     </div>
                 </div>
@@ -37,16 +37,16 @@ export function Header({ title, subtitle }: HeaderProps) {
                     <button
                         className={cn(
                             `hidden sm:flex items-center gap-2 h-9 px-3
-              bg-[rgb(var(--bg-secondary))]
-              border border-[rgb(var(--border-primary))]
-              rounded-lg text-[rgb(var(--text-muted))]
-              hover:text-[rgb(var(--text-secondary))]
+              bg-bg-secondary
+              border border-border-primary
+              rounded-lg text-text-muted
+              hover:text-text-secondary
               transition-colors cursor-pointer`
                         )}
                     >
                         <Search className="h-4 w-4" />
                         <span className="text-sm">Buscar...</span>
-                        <kbd className="hidden lg:inline-flex items-center gap-1 px-1.5 py-0.5 text-xs bg-[rgb(var(--bg-tertiary))] rounded">
+                        <kbd className="hidden lg:inline-flex items-center gap-1 px-1.5 py-0.5 text-xs bg-bg-tertiary rounded">
                             ⌘K
                         </kbd>
                     </button>
@@ -55,9 +55,9 @@ export function Header({ title, subtitle }: HeaderProps) {
                     <button
                         className={cn(
                             `p-2 rounded-lg
-              text-[rgb(var(--text-muted))]
-              hover:text-[rgb(var(--text-primary))]
-              hover:bg-[rgb(var(--bg-tertiary))]
+              text-text-muted
+              hover:text-text-primary
+              hover:bg-bg-tertiary
               transition-colors relative`
                         )}
                     >
@@ -70,9 +70,9 @@ export function Header({ title, subtitle }: HeaderProps) {
                         onClick={toggleTheme}
                         className={cn(
                             `p-2 rounded-lg
-              text-[rgb(var(--text-muted))]
-              hover:text-[rgb(var(--text-primary))]
-              hover:bg-[rgb(var(--bg-tertiary))]
+              text-text-muted
+              hover:text-text-primary
+              hover:bg-bg-tertiary
               transition-colors`
                         )}
                         aria-label={resolvedTheme === 'dark' ? 'Ativar modo claro' : 'Ativar modo escuro'}

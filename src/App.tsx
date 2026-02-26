@@ -24,7 +24,7 @@ function App() {
 
   if (loading) {
     return (
-      <div className="h-screen w-screen flex items-center justify-center bg-[rgb(var(--bg-primary))]">
+      <div className="h-screen w-screen flex items-center justify-center bg-bg-primary">
         <Loader2 className="h-8 w-8 text-indigo-500 animate-spin" />
       </div>
     );

@@ -26,12 +26,12 @@ export const DEFAULT_CATEGORIES: Category[] = [
 ];
 
 export const DEFAULT_ACCOUNTS: Account[] = [
-    { id: 'acc_picpay', name: 'Picpay', type: 'bank' as const, balance: 3937.61, currency: 'BRL' as const, color: '#21C25E', icon: 'Building2' },
-    { id: 'acc_99pay', name: '99Pay', type: 'bank' as const, balance: 2273.92, currency: 'BRL' as const, color: '#F5A623', icon: 'Wallet' },
-    { id: 'acc_mercadopago', name: 'Mercado Pago', type: 'bank' as const, balance: -1648.82, currency: 'BRL' as const, color: '#009EE3', icon: 'Building2' },
-    { id: 'acc_nupj', name: 'NuPj', type: 'bank' as const, balance: 4972.61, currency: 'BRL' as const, color: '#8A05BE', icon: 'Building2' },
-    { id: 'acc_bity', name: 'Bity', type: 'bank' as const, balance: 4669.00, currency: 'BRL' as const, color: '#F59E0B', icon: 'Building2' },
-    { id: 'acc_clear', name: 'Clear', type: 'investment' as const, balance: 13601.10, currency: 'BRL' as const, color: '#06B6D4', icon: 'TrendingUp' },
-    { id: 'acc_cmcapital', name: 'CM Capital', type: 'investment' as const, balance: 1600.00, currency: 'BRL' as const, color: '#6366F1', icon: 'TrendingUp' },
-    { id: 'acc_nubank', name: 'NuBank', type: 'bank' as const, balance: 6.73, currency: 'BRL' as const, color: '#9B59B6', icon: 'CreditCard' },
+    { id: 'acc_picpay', name: 'Picpay', type: 'bank' as const, balance: 0, currency: 'BRL' as const, color: '#21C25E', icon: 'Building2' },
+    { id: 'acc_99pay', name: '99Pay', type: 'bank' as const, balance: 0, currency: 'BRL' as const, color: '#F5A623', icon: 'Wallet' },
+    { id: 'acc_mercadopago', name: 'Mercado Pago', type: 'bank' as const, balance: 0, currency: 'BRL' as const, color: '#009EE3', icon: 'Building2' },
+    { id: 'acc_nupj', name: 'NuPj', type: 'bank' as const, balance: 0, currency: 'BRL' as const, color: '#8A05BE', icon: 'Building2' },
+    { id: 'acc_bity', name: 'Bity', type: 'bank' as const, balance: 0, currency: 'BRL' as const, color: '#F59E0B', icon: 'Building2' },
+    { id: 'acc_clear', name: 'Clear', type: 'investment' as const, balance: 0, currency: 'BRL' as const, color: '#06B6D4', icon: 'TrendingUp' },
+    { id: 'acc_cmcapital', name: 'CM Capital', type: 'investment' as const, balance: 0, currency: 'BRL' as const, color: '#6366F1', icon: 'TrendingUp' },
+    { id: 'acc_nubank', name: 'NuBank', type: 'bank' as const, balance: 0, currency: 'BRL' as const, color: '#9B59B6', icon: 'CreditCard' },
 ];

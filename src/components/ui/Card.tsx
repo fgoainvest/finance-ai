@@ -14,16 +14,16 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
 
         const variants = {
             default: `
-        bg-[rgb(var(--bg-card))]
+        bg-bg-card
         shadow-sm
-        border border-[rgb(var(--border-secondary))]
+        border border-border-secondary
       `,
             glass: `
         glass-card
       `,
             bordered: `
         bg-transparent
-        border-2 border-[rgb(var(--border-primary))]
+        border-2 border-border-primary
       `,
         };
 
@@ -35,7 +35,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
         };
 
         const hoverStyles = hoverable
-            ? 'hover:shadow-md hover:border-[rgb(var(--border-primary))] cursor-pointer hover:-translate-y-0.5'
+            ? 'hover:shadow-md hover:border-border-primary cursor-pointer hover:-translate-y-0.5'
             : '';
 
         return (
@@ -68,7 +68,7 @@ export const CardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(
     ({ className, ...props }, ref) => (
         <h3
             ref={ref}
-            className={cn('font-display font-semibold text-lg text-[rgb(var(--text-primary))]', className)}
+            className={cn('font-display font-semibold text-lg text-text-primary', className)}
             {...props}
         />
     )
