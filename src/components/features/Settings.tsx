@@ -7,14 +7,18 @@ import { Button } from '@/components/ui/Button';
 import { Select } from '@/components/ui/Input';
 import { ConfirmDialog } from '@/components/ui/ConfirmDialog';
 import { DataImportExport } from '@/components/features/DataImportExport';
-import { Moon, Sun, Monitor, Globe, Trash2, AlertCircle, Save, Key, CheckCircle2 } from 'lucide-react';
+import { Moon, Sun, Monitor, Globe, Trash2, AlertCircle, Save, Key, CheckCircle2, CloudUpload, RefreshCw, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useAuth } from '@/contexts/AuthContext';
+import { syncService } from '@/services/syncService';
 
 export function Settings() {
     const { theme, setTheme } = useTheme();
     const { state, dispatch } = useApp();
     const { showToast } = useToast();
+    const { user } = useAuth();
     const [isConfirmResetOpen, setIsConfirmResetOpen] = useState(false);
+    const [isSyncing, setIsSyncing] = useState(false);
     const [apiKey, setApiKey] = useState(() => import.meta.env.VITE_OPENROUTER_API_KEY || '');
     const [apiKeySaved, setApiKeySaved] = useState(false);
 
@@ -38,6 +42,27 @@ export function Settings() {
 
     const handleApiKeyInfo = () => {
         showToast('Para usar a IA, adicione VITE_OPENROUTER_API_KEY no arquivo .env e reinicie o servidor.', 'info');
+    };
+
+    const handleCloudSync = async () => {
+        if (!user) {
+            showToast('Você precisa estar logado para sincronizar com a nuvem.', 'error');
+            return;
+        }
+
+        setIsSyncing(true);
+        try {
+            const result = await syncService.uploadAllData(state, user.id);
+            if (result.success) {
+                showToast(result.message, 'success');
+            } else {
+                showToast(result.message, 'error');
+            }
+        } catch (error) {
+            showToast('Erro ao sincronizar dados.', 'error');
+        } finally {
+            setIsSyncing(false);
+        }
     };
 
     return (
@@ -165,6 +190,48 @@ export function Settings() {
 
                 {/* Import / Export */}
                 <DataImportExport />
+
+                {/* Cloud Sync */}
+                {user && (
+                    <Card variant="glass" className="md:col-span-2 border-[rgba(var(--accent-primary),0.3)] bg-[rgba(var(--accent-primary),0.02)]">
+                        <CardHeader>
+                            <CardTitle className="flex items-center gap-2 text-[rgb(var(--text-primary))]">
+                                <CloudUpload className="h-5 w-5 text-indigo-400" />
+                                Sincronização em Nuvem
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            <div className="flex flex-col sm:flex-row items-center justify-between gap-6 p-6 rounded-2xl bg-indigo-500/5 border border-indigo-500/10">
+                                <div className="flex items-center gap-4">
+                                    <RefreshCw className={cn("h-6 w-6 text-indigo-400 shrink-0", isSyncing && "animate-spin")} />
+                                    <div>
+                                        <h4 className="font-semibold text-[rgb(var(--text-primary))]">Subir dados locais para a nuvem</h4>
+                                        <p className="text-sm text-[rgb(var(--text-muted))]">
+                                            Isso enviará suas transações, contas e categorias locais para sua conta {user.email}.
+                                        </p>
+                                    </div>
+                                </div>
+                                <Button
+                                    variant="primary"
+                                    onClick={handleCloudSync}
+                                    disabled={isSyncing}
+                                    leftIcon={isSyncing ? <Loader2 className="h-4 w-4 animate-spin" /> : <CloudUpload className="h-4 w-4" />}
+                                >
+                                    {isSyncing ? 'Sincronizando...' : 'Sincronizar Agora'}
+                                </Button>
+                            </div>
+
+                            {user.email === 'fgoainvest@gmail.com' && (
+                                <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/20">
+                                    <p className="text-xs text-amber-200 leading-relaxed font-medium">
+                                        ✨ Olá! Detectamos que você é o usuário prioritário <strong>fgoainvest@gmail.com</strong>.
+                                        Use o botão acima para garantir que todos os seus dados locais sejam salvos com segurança no Supabase.
+                                    </p>
+                                </div>
+                            )}
+                        </CardContent>
+                    </Card>
+                )}
 
                 {/* Data Management */}
                 <Card variant="glass" className="md:col-span-2 border-[rgba(var(--border-primary),0.3)]">
