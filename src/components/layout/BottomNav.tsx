@@ -52,10 +52,10 @@ export function BottomNav({ currentPage, onNavigate, onAddClick }: BottomNavProp
                                 className={cn(
                                     `flex flex-col items-center justify-center
                   w-14 h-14 -mt-8
-                  bg-gradient-to-r from-[rgb(var(--accent-primary))] to-[rgb(var(--accent-secondary))]
+                  bg-gradient-to-r from-accent-primary to-accent-secondary
                   text-white
                   rounded-full shadow-[0_0_15px_rgba(var(--accent-glow),0.5)]
-                  active:scale-95 transition-transform border-4 border-[rgb(var(--bg-primary))]`
+                  active:scale-95 transition-transform border-4 border-bg-primary`
                                 )}
                             >
                                 <Icon className="h-6 w-6" />
@@ -72,8 +72,8 @@ export function BottomNav({ currentPage, onNavigate, onAddClick }: BottomNavProp
                 px-3 py-1 rounded-lg
                 transition-colors`,
                                 isActive
-                                    ? 'text-primary-600 dark:text-primary-400'
-                                    : 'text-[rgb(var(--text-muted))]'
+                                    ? 'text-accent-primary'
+                                    : 'text-text-muted'
                             )}
                         >
                             <Icon className="h-5 w-5" />

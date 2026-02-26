@@ -111,7 +111,7 @@ export function Dashboard({ onViewTransactions, onAddTransaction }: DashboardPro
                     <CardContent className="relative z-10">
                         <div className="flex items-start justify-between">
                             <div>
-                                <p className="text-white/70 text-xs font-bold uppercase tracking-widest">Saldo Mensal</p>
+                                <p className="text-white/70 text-xs font-bold uppercase tracking-widest">Saldo Total</p>
                                 <p className="text-3xl font-display font-bold mt-1 drop-shadow-md">
                                     {formatCurrency(totalBalance)}
                                 </p>

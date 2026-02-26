@@ -22,7 +22,7 @@ export function Layout({
     pageSubtitle,
 }: LayoutProps) {
     return (
-        <div className="min-h-screen bg-[rgb(var(--bg-primary))]">
+        <div className="min-h-screen bg-bg-primary">
             {/* Desktop Sidebar */}
             <Sidebar currentPage={currentPage} onNavigate={onNavigate} />
 

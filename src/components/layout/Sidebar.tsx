@@ -48,13 +48,13 @@ export function Sidebar({ currentPage, onNavigate }: SidebarProps) {
             )}
         >
             {/* Logo */}
-            <div className="h-16 flex items-center justify-center border-b border-[rgba(var(--border-secondary),0.5)]">
+            <div className="h-16 flex items-center justify-center border-b border-border-secondary/50">
                 {isCollapsed ? (
-                    <Sparkles className="h-6 w-6 text-[rgb(var(--accent-primary))] drop-shadow-[0_0_8px_rgba(var(--accent-glow),0.5)]" />
+                    <Sparkles className="h-6 w-6 text-accent-primary drop-shadow-[0_0_8px_rgba(var(--accent-glow),0.5)]" />
                 ) : (
                     <div className="flex items-center gap-2">
-                        <Sparkles className="h-6 w-6 text-[rgb(var(--accent-primary))] drop-shadow-[0_0_8px_rgba(var(--accent-glow),0.5)]" />
-                        <span className="font-display font-bold text-lg bg-gradient-to-r from-[rgb(var(--text-primary))] to-[rgb(var(--text-secondary))] bg-clip-text text-transparent">
+                        <Sparkles className="h-6 w-6 text-accent-primary drop-shadow-[0_0_8px_rgba(var(--accent-glow),0.5)]" />
+                        <span className="font-display font-bold text-lg bg-gradient-to-r from-text-primary to-text-secondary bg-clip-text text-transparent">
                             Financeiro
                         </span>
                     </div>
@@ -74,13 +74,13 @@ export function Sidebar({ currentPage, onNavigate }: SidebarProps) {
                             className={cn(
                                 `w-full flex items-center gap-3 px-3 py-2.5 rounded-lg
                 transition-all duration-200
-                text-[rgb(var(--text-secondary))]
-                hover:bg-[rgba(var(--accent-primary),0.1)] hover:text-[rgb(var(--text-primary))]`,
+                text-text-secondary
+                hover:bg-accent-primary/10 hover:text-text-primary`,
                                 isActive && `
-                  bg-[rgba(var(--accent-primary),0.15)] 
-                  text-[rgb(var(--accent-primary))]
+                  bg-accent-primary/15 
+                  text-accent-primary
                   shadow-[0_0_10px_rgba(var(--accent-glow),0.2)]
-                  border border-[rgba(var(--accent-primary),0.2)]
+                  border border-accent-primary/20
                 `,
                                 isCollapsed && 'justify-center'
                             )}
@@ -95,13 +95,13 @@ export function Sidebar({ currentPage, onNavigate }: SidebarProps) {
             </nav>
 
             {/* Collapse Toggle */}
-            <div className="p-2 border-t border-[rgb(var(--border-secondary))]">
+            <div className="p-2 border-t border-border-secondary">
                 <button
                     onClick={() => setIsCollapsed(!isCollapsed)}
                     className={cn(
                         `w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg
-            text-[rgb(var(--text-muted))]
-            hover:bg-[rgb(var(--bg-tertiary))] hover:text-[rgb(var(--text-primary))]
+            text-text-muted
+            hover:bg-bg-tertiary hover:text-text-primary
             transition-colors`
                     )}
                 >
