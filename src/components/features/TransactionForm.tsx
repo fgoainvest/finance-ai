@@ -242,15 +242,15 @@ export function TransactionForm({ isOpen, onClose, editTransaction }: Transactio
                         onBlur={handleDescriptionBlur}
                         rightIcon={
                             isLoadingAI ? (
-                                <Loader2 className="h-4 w-4 animate-spin text-primary-500" />
+                                <Loader2 className="h-4 w-4 animate-spin text-accent-primary" />
                             ) : (
-                                <Sparkles className="h-4 w-4 text-primary-500" />
+                                <Sparkles className="h-4 w-4 text-accent-primary" />
                             )
                         }
                         required
                     />
                     {aiSuggestion && (
-                        <p className="mt-1 text-xs text-primary-600 dark:text-primary-400 flex items-center gap-1">
+                        <p className="mt-1 text-xs text-accent-primary flex items-center gap-1">
                             <Sparkles className="h-3 w-3" />
                             IA sugeriu a categoria automaticamente
                         </p>
@@ -290,7 +290,7 @@ export function TransactionForm({ isOpen, onClose, editTransaction }: Transactio
                         type="checkbox"
                         checked={isRecurring}
                         onChange={(e) => setIsRecurring(e.target.checked)}
-                        className="w-4 h-4 rounded border-[rgb(var(--border-primary))] text-primary-600 focus:ring-primary-500"
+                        className="w-4 h-4 rounded border-[rgb(var(--border-primary))] text-accent-primary focus:ring-accent-primary"
                     />
                     <span className="text-sm text-[rgb(var(--text-secondary))]">
                         Transação recorrente

@@ -134,6 +134,17 @@ export function Accounts() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {state.accounts.length === 0 && (
+                    <div className="col-span-full text-center py-16 text-[rgb(var(--text-muted))]">
+                        <Wallet className="h-12 w-12 mx-auto mb-4 opacity-40" />
+                        <p className="text-base font-medium text-[rgb(var(--text-secondary))]">Nenhuma conta cadastrada</p>
+                        <p className="text-sm mt-2 opacity-70">Crie sua primeira conta para começar a organizar suas finanças.</p>
+                        <Button className="mt-5" onClick={() => handleOpenModal()}>
+                            <Plus className="mr-2 h-4 w-4" />
+                            Criar Primeira Conta
+                        </Button>
+                    </div>
+                )}
                 {state.accounts.map((account) => {
                     const Icon = getAccountIcon(account.type);
 

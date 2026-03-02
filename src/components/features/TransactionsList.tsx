@@ -287,7 +287,7 @@ export function TransactionsList({ onEdit, onAdd }: TransactionsListProps) {
                                                 </button>
                                                 <button
                                                     onClick={() => handleDelete(transaction.id)}
-                                                    className="p-2 rounded-lg text-[rgb(var(--text-muted))] hover:text-danger-500 hover:bg-danger-50 dark:hover:bg-danger-500/20 transition-colors"
+                                                    className="p-2 rounded-lg text-[rgb(var(--text-muted))] hover:text-expense hover:bg-[rgba(var(--expense),0.1)] transition-colors"
                                                 >
                                                     <Trash2 className="h-4 w-4" />
                                                 </button>

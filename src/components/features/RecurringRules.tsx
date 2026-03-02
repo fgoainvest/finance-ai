@@ -49,7 +49,7 @@ export function RecurringRules() {
                                         <div>
                                             <h3 className="font-bold text-lg text-[rgb(var(--text-primary))] tracking-tight mb-1">{rule.description}</h3>
                                             <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[rgb(var(--text-muted))]">
-                                                <div className="w-5 h-5 rounded-md bg-white/5 flex items-center justify-center border border-white/5">
+                                                <div className="w-5 h-5 rounded-md bg-bg-tertiary flex items-center justify-center border border-border-secondary">
                                                     <Wallet className="h-3 w-3" />
                                                 </div>
                                                 {account?.name}
@@ -67,11 +67,11 @@ export function RecurringRules() {
                                     </div>
 
                                     <div className="grid grid-cols-2 gap-3 mt-6 pt-5 border-t border-[rgba(var(--border-secondary),0.2)]">
-                                        <div className="bg-white/5 p-2 rounded-xl border border-white/5 flex flex-col gap-1 items-center justify-center" title="Frequência">
+                                        <div className="bg-bg-tertiary p-2 rounded-xl border border-border-secondary flex flex-col gap-1 items-center justify-center" title="Frequência">
                                             <Repeat className="h-4 w-4 text-[rgb(var(--accent-primary))]" />
                                             <span className="text-[10px] font-bold uppercase tracking-widest text-[rgb(var(--text-muted))]">{FREQUENCY_LABELS[rule.frequency]}</span>
                                         </div>
-                                        <div className="bg-white/5 p-2 rounded-xl border border-white/5 flex flex-col gap-1 items-center justify-center" title="Próximo Vencimento">
+                                        <div className="bg-bg-tertiary p-2 rounded-xl border border-border-secondary flex flex-col gap-1 items-center justify-center" title="Próximo Vencimento">
                                             <Calendar className="h-4 w-4 text-[rgb(var(--accent-secondary))]" />
                                             <span className="text-[10px] font-bold uppercase tracking-widest text-[rgb(var(--text-muted))]">{formatDate(rule.nextDate)}</span>
                                         </div>

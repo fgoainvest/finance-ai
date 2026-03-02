@@ -223,7 +223,7 @@ export function Settings() {
 
                             {user.email === 'fgoainvest@gmail.com' && (
                                 <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/20">
-                                    <p className="text-xs text-amber-200 leading-relaxed font-medium">
+                                    <p className="text-xs text-amber-700 dark:text-amber-200 leading-relaxed font-medium">
                                         ✨ Olá! Detectamos que você é o usuário prioritário <strong>fgoainvest@gmail.com</strong>.
                                         Use o botão acima para garantir que todos os seus dados locais sejam salvos com segurança no Supabase.
                                     </p>

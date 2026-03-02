@@ -316,13 +316,13 @@ export function AIChatDrawer() {
 
             <div
                 className={cn(
-                    'fixed inset-y-0 right-0 z-50 w-full sm:w-[420px] glass border-l border-[rgba(255,255,255,0.08)] shadow-2xl flex flex-col transition-transform duration-300 ease-in-out sm:m-4 sm:rounded-3xl sm:h-[calc(100vh-2rem)]',
+                    'fixed inset-y-0 right-0 z-50 w-full sm:w-[420px] glass border-l border-border-secondary shadow-2xl flex flex-col transition-transform duration-300 ease-in-out sm:m-4 sm:rounded-3xl sm:h-[calc(100vh-2rem)]',
                     isOpen ? 'translate-x-0' : 'translate-x-full'
                 )}
             >
                 <div className="flex items-center justify-between p-5 border-b border-[rgba(var(--border-secondary),0.3)] bg-[rgba(var(--bg-secondary),0.3)] rounded-t-3xl backdrop-blur-md shrink-0">
                     <div className="flex items-center gap-3">
-                        <div className="p-2.5 bg-gradient-to-br from-[rgb(var(--accent-primary))] to-[rgb(var(--accent-secondary))] rounded-xl shadow-lg shadow-indigo-500/20">
+                        <div className="p-2.5 bg-gradient-to-br from-[rgb(var(--accent-primary))] to-[rgb(var(--accent-secondary))] rounded-xl shadow-lg shadow-accent-primary/20">
                             <Bot className="h-5 w-5 text-white" />
                         </div>
                         <div>
@@ -340,14 +340,14 @@ export function AIChatDrawer() {
                             <button
                                 onClick={handleClearChat}
                                 title="Limpar conversa"
-                                className="p-2 hover:bg-[rgba(255,255,255,0.1)] rounded-full transition-colors text-[rgb(var(--text-muted))] hover:text-rose-400"
+                                className="p-2 hover:bg-bg-tertiary rounded-full transition-colors text-[rgb(var(--text-muted))] hover:text-rose-400"
                             >
                                 <Trash2 className="h-4 w-4" />
                             </button>
                         )}
                         <button
                             onClick={() => setIsOpen(false)}
-                            className="p-2 hover:bg-[rgba(255,255,255,0.1)] rounded-full transition-colors text-[rgb(var(--text-muted))] hover:text-[rgb(var(--text-primary))]"
+                            className="p-2 hover:bg-bg-tertiary rounded-full transition-colors text-[rgb(var(--text-muted))] hover:text-[rgb(var(--text-primary))]"
                         >
                             <X className="h-5 w-5" />
                         </button>
@@ -406,17 +406,17 @@ export function AIChatDrawer() {
                                     'px-4 py-3 rounded-2xl max-w-[85%] text-sm leading-relaxed shadow-sm flex flex-col gap-2',
                                     msg.role === 'user'
                                         ? 'bg-[rgba(var(--bg-tertiary),0.8)] text-[rgb(var(--text-primary))] rounded-tr-none border border-[rgba(var(--border-primary),0.3)]'
-                                        : 'bg-[rgba(255,255,255,0.05)] text-[rgb(var(--text-primary))] border border-[rgba(var(--border-secondary),0.3)] rounded-tl-none backdrop-blur-sm'
+                                        : 'bg-bg-secondary text-[rgb(var(--text-primary))] border border-border-secondary rounded-tl-none backdrop-blur-sm'
                                 )}
                             >
                                 {msg.image && (
-                                    <div className="rounded-xl overflow-hidden border border-white/10 mb-1">
+                                    <div className="rounded-xl overflow-hidden border border-border-secondary mb-1">
                                         <img src={msg.image} alt="Upload" className="w-full h-auto max-h-60 object-cover" />
                                     </div>
                                 )}
                                 {msg.role === 'assistant' ? (
                                     <span
-                                        className="prose prose-sm prose-invert max-w-none"
+                                        className="prose prose-sm dark:prose-invert max-w-none"
                                         dangerouslySetInnerHTML={{ __html: renderMarkdown(msg.content) }}
                                     />
                                 ) : (
@@ -434,7 +434,7 @@ export function AIChatDrawer() {
                             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[rgb(var(--accent-primary))] to-[rgb(var(--accent-secondary))] text-white flex items-center justify-center shrink-0">
                                 <Bot className="h-4 w-4" />
                             </div>
-                            <div className="bg-[rgba(255,255,255,0.03)] border border-[rgba(var(--border-secondary),0.2)] px-4 py-3 rounded-2xl rounded-tl-none flex items-center gap-2">
+                            <div className="bg-bg-secondary border border-border-secondary px-4 py-3 rounded-2xl rounded-tl-none flex items-center gap-2">
                                 <Loader2 className="h-3 w-3 animate-spin text-[rgb(var(--accent-primary))]" />
                                 <span className="text-xs font-medium text-[rgb(var(--text-muted))] tracking-wide">Analisando...</span>
                             </div>
@@ -447,7 +447,7 @@ export function AIChatDrawer() {
                 <div className="p-5 border-t border-[rgba(var(--border-secondary),0.2)] bg-[rgba(var(--bg-secondary),0.2)] rounded-b-3xl shrink-0 space-y-3">
                     {pendingImage && (
                         <div className="relative inline-block group">
-                            <img src={pendingImage} className="w-20 h-20 object-cover rounded-xl border-2 border-[rgb(var(--accent-primary))] shadow-lg shadow-indigo-500/20" />
+                            <img src={pendingImage} className="w-20 h-20 object-cover rounded-xl border-2 border-[rgb(var(--accent-primary))] shadow-lg shadow-accent-primary/20" />
                             <button
                                 onClick={() => setPendingImage(null)}
                                 className="absolute -top-2 -right-2 bg-rose-500 text-white rounded-full p-1 shadow-md hover:scale-110 transition-transform"
@@ -490,7 +490,7 @@ export function AIChatDrawer() {
                         <button
                             type="submit"
                             disabled={(!input.trim() && !pendingImage) || isLoading || !isAvailable}
-                            className="p-3.5 bg-gradient-to-r from-[rgb(var(--accent-primary))] to-[rgb(var(--accent-secondary))] text-white rounded-2xl hover:scale-105 active:scale-95 disabled:opacity-40 disabled:scale-100 transition-all shadow-lg shadow-indigo-500/20"
+                            className="p-3.5 bg-gradient-to-r from-[rgb(var(--accent-primary))] to-[rgb(var(--accent-secondary))] text-white rounded-2xl hover:scale-105 active:scale-95 disabled:opacity-40 disabled:scale-100 transition-all shadow-lg shadow-accent-primary/20"
                         >
                             <Send className="h-5 w-5" />
                         </button>

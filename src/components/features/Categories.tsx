@@ -117,7 +117,7 @@ export function Categories() {
                         "px-6 py-2 text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300",
                         activeTab === 'expense'
                             ? "bg-gradient-to-r from-rose-500 to-red-600 text-white shadow-lg"
-                            : "text-[rgb(var(--text-muted))] hover:text-[rgb(var(--text-primary))] hover:bg-white/5"
+                            : "text-[rgb(var(--text-muted))] hover:text-[rgb(var(--text-primary))] hover:bg-bg-tertiary"
                     )}
                 >
                     Despesas
@@ -128,7 +128,7 @@ export function Categories() {
                         "px-6 py-2 text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300 ml-1",
                         activeTab === 'income'
                             ? "bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg"
-                            : "text-[rgb(var(--text-muted))] hover:text-[rgb(var(--text-primary))] hover:bg-white/5"
+                            : "text-[rgb(var(--text-muted))] hover:text-[rgb(var(--text-primary))] hover:bg-bg-tertiary"
                     )}
                 >
                     Receitas

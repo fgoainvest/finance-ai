@@ -5,7 +5,8 @@ import {
     Wallet,
     ArrowUpRight,
     ArrowDownRight,
-    Clock
+    Clock,
+    PieChart as PieChartIcon,
 } from 'lucide-react';
 import { AreaChart, Area, PieChart, Pie, Cell, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui';
@@ -263,7 +264,7 @@ export function Dashboard({ onViewTransactions, onAddTransaction }: DashboardPro
                                             axisLine={false}
                                             tickLine={false}
                                             tick={{ fill: 'rgba(var(--text-muted), 0.7)', fontSize: 10, fontWeight: 600 }}
-                                            tickFormatter={(value) => `R$${value / 1000}k`}
+                                            tickFormatter={(value) => value === 0 ? 'R$0' : value >= 1000 ? `R$${(value / 1000).toFixed(0)}k` : `R$${value}`}
                                             dx={-10}
                                         />
                                         <Tooltip
@@ -309,7 +310,13 @@ export function Dashboard({ onViewTransactions, onAddTransaction }: DashboardPro
                     </CardHeader>
                     <CardContent>
                         <div className="relative h-48 w-full">
-                            {hasMounted && (
+                            {categoryData.length === 0 ? (
+                                <div className="flex flex-col items-center justify-center h-full text-center">
+                                    <PieChartIcon className="h-10 w-10 text-[rgb(var(--text-muted))] opacity-40 mb-2" />
+                                    <p className="text-sm text-[rgb(var(--text-muted))]">Sem dados de despesas</p>
+                                    <p className="text-xs text-[rgb(var(--text-muted))] opacity-60 mt-1">Adicione transações para visualizar</p>
+                                </div>
+                            ) : hasMounted && (
                                 <ResponsiveContainer width="100%" height="100%">
                                     <PieChart>
                                         <Pie
@@ -363,7 +370,7 @@ export function Dashboard({ onViewTransactions, onAddTransaction }: DashboardPro
                     <CardTitle>Transações Recentes</CardTitle>
                     <button
                         onClick={onViewTransactions}
-                        className="text-sm text-primary-600 dark:text-primary-400 hover:underline"
+                        className="text-sm text-accent-primary hover:underline"
                     >
                         Ver todas
                     </button>
@@ -375,7 +382,7 @@ export function Dashboard({ onViewTransactions, onAddTransaction }: DashboardPro
                             <p className="text-[rgb(var(--text-secondary))]">Nenhuma transação ainda</p>
                             <button
                                 onClick={onAddTransaction}
-                                className="mt-3 text-primary-600 dark:text-primary-400 hover:underline text-sm"
+                                className="mt-3 text-accent-primary hover:underline text-sm"
                             >
                                 Adicionar primeira transação
                             </button>

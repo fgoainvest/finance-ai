@@ -11,7 +11,9 @@ import {
     Sparkles,
     Tag,
     Repeat,
+    LogOut,
 } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface NavItem {
     id: string;
@@ -32,10 +34,18 @@ const navItems: NavItem[] = [
 interface SidebarProps {
     currentPage: string;
     onNavigate: (page: string) => void;
+    onCollapseChange?: (isCollapsed: boolean) => void;
 }
 
-export function Sidebar({ currentPage, onNavigate }: SidebarProps) {
+export function Sidebar({ currentPage, onNavigate, onCollapseChange }: SidebarProps) {
     const [isCollapsed, setIsCollapsed] = useState(false);
+    const { signOut } = useAuth();
+
+    const handleToggleCollapse = () => {
+        const next = !isCollapsed;
+        setIsCollapsed(next);
+        onCollapseChange?.(next);
+    };
 
     return (
         <aside
@@ -94,10 +104,26 @@ export function Sidebar({ currentPage, onNavigate }: SidebarProps) {
                 })}
             </nav>
 
-            {/* Collapse Toggle */}
-            <div className="p-2 border-t border-border-secondary">
+            {/* Footer Actions */}
+            <div className="p-2 border-t border-border-secondary space-y-1">
+                {/* Logout Button */}
                 <button
-                    onClick={() => setIsCollapsed(!isCollapsed)}
+                    onClick={signOut}
+                    className={cn(
+                        `w-full flex items-center gap-2 px-3 py-2 rounded-lg
+            text-text-muted
+            hover:bg-[rgba(var(--expense),0.1)] hover:text-expense
+            transition-colors`,
+                        isCollapsed && 'justify-center'
+                    )}
+                >
+                    <LogOut className="h-5 w-5 shrink-0" />
+                    {!isCollapsed && <span className="text-sm">Sair</span>}
+                </button>
+
+                {/* Collapse Toggle */}
+                <button
+                    onClick={handleToggleCollapse}
                     className={cn(
                         `w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg
             text-text-muted
@@ -118,3 +144,4 @@ export function Sidebar({ currentPage, onNavigate }: SidebarProps) {
         </aside>
     );
 }
+
