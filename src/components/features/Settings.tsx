@@ -7,10 +7,9 @@ import { Button } from '@/components/ui/Button';
 import { Select } from '@/components/ui/Input';
 import { ConfirmDialog } from '@/components/ui/ConfirmDialog';
 import { DataImportExport } from '@/components/features/DataImportExport';
-import { Moon, Sun, Monitor, Globe, Trash2, AlertCircle, Save, Key, CheckCircle2, CloudUpload, RefreshCw, Loader2 } from 'lucide-react';
+import { Moon, Sun, Monitor, Globe, Trash2, AlertCircle, Save } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/contexts/AuthContext';
-import { syncService } from '@/services/syncService';
 
 export function Settings() {
     const { theme, setTheme } = useTheme();
@@ -18,9 +17,6 @@ export function Settings() {
     const { showToast } = useToast();
     const { user } = useAuth();
     const [isConfirmResetOpen, setIsConfirmResetOpen] = useState(false);
-    const [isSyncing, setIsSyncing] = useState(false);
-    const [apiKey, setApiKey] = useState(() => import.meta.env.VITE_OPENROUTER_API_KEY || '');
-    const [apiKeySaved, setApiKeySaved] = useState(false);
 
     const handleResetData = () => {
         localStorage.clear();
@@ -37,33 +33,9 @@ export function Settings() {
 
     const handleSave = () => {
         showToast('Configurações salvas com sucesso!', 'success');
-        setApiKeySaved(false);
     };
 
-    const handleApiKeyInfo = () => {
-        showToast('Para usar a IA, adicione VITE_OPENROUTER_API_KEY no arquivo .env e reinicie o servidor.', 'info');
-    };
 
-    const handleCloudSync = async () => {
-        if (!user) {
-            showToast('Você precisa estar logado para sincronizar com a nuvem.', 'error');
-            return;
-        }
-
-        setIsSyncing(true);
-        try {
-            const result = await syncService.uploadAllData(state, user.id);
-            if (result.success) {
-                showToast(result.message, 'success');
-            } else {
-                showToast(result.message, 'error');
-            }
-        } catch (error) {
-            showToast('Erro ao sincronizar dados.', 'error');
-        } finally {
-            setIsSyncing(false);
-        }
-    };
 
     return (
         <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-10">
@@ -145,93 +117,7 @@ export function Settings() {
                     </CardContent>
                 </Card>
 
-                {/* AI Settings */}
-                <Card variant="glass" className="md:col-span-2 border-[rgba(var(--accent-primary),0.15)] shadow-[0_10px_30px_-10px_rgba(var(--accent-primary),0.2)]">
-                    <CardHeader>
-                        <CardTitle className="flex items-center gap-2 text-[rgb(var(--text-primary))]">
-                            <Key className="h-5 w-5 text-[rgb(var(--accent-primary))]" />
-                            Assistente de IA (OpenRouter)
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                        <p className="text-sm text-[rgb(var(--text-muted))]">
-                            O assistente usa a API do OpenRouter. A chave é lida do arquivo <code className="bg-[rgba(var(--bg-tertiary),0.5)] px-1.5 py-0.5 rounded text-xs font-mono">.env</code> na variável <code className="bg-[rgba(var(--bg-tertiary),0.5)] px-1.5 py-0.5 rounded text-xs font-mono">VITE_OPENROUTER_API_KEY</code>.
-                        </p>
 
-                        <div className="flex items-center gap-3 p-4 rounded-2xl border border-[rgba(var(--border-primary),0.3)] bg-[rgba(var(--bg-tertiary),0.2)]">
-                            <div className="flex-1">
-                                <p className="text-sm font-semibold text-[rgb(var(--text-primary))]">Status da API Key</p>
-                                <p className="text-xs text-[rgb(var(--text-muted))] mt-0.5">
-                                    {import.meta.env.VITE_OPENROUTER_API_KEY && import.meta.env.VITE_OPENROUTER_API_KEY !== 'your_openrouter_key_here'
-                                        ? '✅ Chave configurada e ativa'
-                                        : '❌ Chave não encontrada no .env'}
-                                </p>
-                            </div>
-                            {import.meta.env.VITE_OPENROUTER_API_KEY && import.meta.env.VITE_OPENROUTER_API_KEY !== 'your_openrouter_key_here' ? (
-                                <CheckCircle2 className="h-6 w-6 text-emerald-500 shrink-0" />
-                            ) : (
-                                <Button variant="secondary" size="sm" onClick={handleApiKeyInfo}>
-                                    Como configurar
-                                </Button>
-                            )}
-                        </div>
-
-                        <div className="p-4 rounded-2xl bg-[rgba(var(--accent-primary),0.05)] border border-[rgba(var(--accent-primary),0.15)]">
-                            <p className="text-xs text-[rgb(var(--text-muted))] leading-relaxed">
-                                <strong className="text-[rgb(var(--text-secondary))]">Como configurar:</strong><br />
-                                1. Acesse <a href="https://openrouter.ai/keys" target="_blank" rel="noopener noreferrer" className="text-[rgb(var(--accent-primary))] underline">openrouter.ai/keys</a> e crie uma chave<br />
-                                2. Adicione no <code className="font-mono">.env</code>: <code className="font-mono">VITE_OPENROUTER_API_KEY=sua_chave</code><br />
-                                3. Opcionalmente defina o modelo: <code className="font-mono">VITE_OPENROUTER_MODEL=google/gemini-2.0-flash-001</code><br />
-                                4. Reinicie o servidor de desenvolvimento
-                            </p>
-                        </div>
-                    </CardContent>
-                </Card>
-
-                {/* Import / Export */}
-                <DataImportExport />
-
-                {/* Cloud Sync */}
-                {user && (
-                    <Card variant="glass" className="md:col-span-2 border-[rgba(var(--accent-primary),0.3)] bg-[rgba(var(--accent-primary),0.02)]">
-                        <CardHeader>
-                            <CardTitle className="flex items-center gap-2 text-[rgb(var(--text-primary))]">
-                                <CloudUpload className="h-5 w-5 text-indigo-400" />
-                                Sincronização em Nuvem
-                            </CardTitle>
-                        </CardHeader>
-                        <CardContent className="space-y-4">
-                            <div className="flex flex-col sm:flex-row items-center justify-between gap-6 p-6 rounded-2xl bg-indigo-500/5 border border-indigo-500/10">
-                                <div className="flex items-center gap-4">
-                                    <RefreshCw className={cn("h-6 w-6 text-indigo-400 shrink-0", isSyncing && "animate-spin")} />
-                                    <div>
-                                        <h4 className="font-semibold text-[rgb(var(--text-primary))]">Subir dados locais para a nuvem</h4>
-                                        <p className="text-sm text-[rgb(var(--text-muted))]">
-                                            Isso enviará suas transações, contas e categorias locais para sua conta {user.email}.
-                                        </p>
-                                    </div>
-                                </div>
-                                <Button
-                                    variant="primary"
-                                    onClick={handleCloudSync}
-                                    disabled={isSyncing}
-                                    leftIcon={isSyncing ? <Loader2 className="h-4 w-4 animate-spin" /> : <CloudUpload className="h-4 w-4" />}
-                                >
-                                    {isSyncing ? 'Sincronizando...' : 'Sincronizar Agora'}
-                                </Button>
-                            </div>
-
-                            {user.email === 'fgoainvest@gmail.com' && (
-                                <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/20">
-                                    <p className="text-xs text-amber-700 dark:text-amber-200 leading-relaxed font-medium">
-                                        ✨ Olá! Detectamos que você é o usuário prioritário <strong>fgoainvest@gmail.com</strong>.
-                                        Use o botão acima para garantir que todos os seus dados locais sejam salvos com segurança no Supabase.
-                                    </p>
-                                </div>
-                            )}
-                        </CardContent>
-                    </Card>
-                )}
 
                 {/* Data Management */}
                 <Card variant="glass" className="md:col-span-2 border-[rgba(var(--border-primary),0.3)]">
