@@ -35,7 +35,7 @@ export function Layout({
 
             {/* Main Content */}
             <div className={cn('min-h-screen flex flex-col transition-all duration-300', isSidebarCollapsed ? 'md:ml-16' : 'md:ml-64')}>
-                <Header title={pageTitle} subtitle={pageSubtitle} />
+                <Header title={pageTitle} subtitle={pageSubtitle} onNavigate={onNavigate} />
 
                 <main className="flex-1 p-4 md:p-6 pb-24 md:pb-6">
                     {children}

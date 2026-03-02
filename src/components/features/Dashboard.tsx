@@ -257,13 +257,13 @@ export function Dashboard({ onViewTransactions, onAddTransaction }: DashboardPro
                                             dataKey="month"
                                             axisLine={false}
                                             tickLine={false}
-                                            tick={{ fill: 'rgba(var(--text-muted), 0.7)', fontSize: 10, fontWeight: 600 }}
+                                            tick={{ fill: 'rgba(var(--text-secondary), 0.9)', fontSize: 10, fontWeight: 700 }}
                                             dy={10}
                                         />
                                         <YAxis
                                             axisLine={false}
                                             tickLine={false}
-                                            tick={{ fill: 'rgba(var(--text-muted), 0.7)', fontSize: 10, fontWeight: 600 }}
+                                            tick={{ fill: 'rgba(var(--text-secondary), 0.9)', fontSize: 10, fontWeight: 700 }}
                                             tickFormatter={(value) => value === 0 ? 'R$0' : value >= 1000 ? `R$${(value / 1000).toFixed(0)}k` : `R$${value}`}
                                             dx={-10}
                                         />
