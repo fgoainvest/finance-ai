@@ -1,5 +1,6 @@
 import { Moon, Sun, Bell, Search, Sparkles } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useAuth } from '@/contexts/AuthContext';
 import { cn } from '@/lib/utils';
 
 interface HeaderProps {
@@ -9,6 +10,8 @@ interface HeaderProps {
 
 export function Header({ title, subtitle }: HeaderProps) {
     const { resolvedTheme, toggleTheme } = useTheme();
+    const { user } = useAuth();
+    const userInitial = user?.email?.charAt(0).toUpperCase() || 'U';
 
     return (
         <header className="sticky top-0 z-30 bg-bg-primary/80 backdrop-blur-md border-b border-border-secondary">
@@ -16,8 +19,8 @@ export function Header({ title, subtitle }: HeaderProps) {
                 {/* Left - Title (Mobile shows logo) */}
                 <div className="flex items-center gap-3">
                     <div className="md:hidden flex items-center gap-2">
-                        <Sparkles className="h-5 w-5 text-primary-500" />
-                        <span className="font-display font-bold text-primary-600 dark:text-primary-400">
+                        <Sparkles className="h-5 w-5 text-accent-primary" />
+                        <span className="font-display font-bold text-accent-primary">
                             Financeiro
                         </span>
                     </div>
@@ -62,7 +65,7 @@ export function Header({ title, subtitle }: HeaderProps) {
                         )}
                     >
                         <Bell className="h-5 w-5" />
-                        <span className="absolute top-1 right-1 w-2 h-2 bg-danger-500 rounded-full" />
+                        <span className="absolute top-1 right-1 w-2 h-2 bg-expense rounded-full" />
                     </button>
 
                     {/* Theme Toggle */}
@@ -88,14 +91,14 @@ export function Header({ title, subtitle }: HeaderProps) {
                     <button
                         className={cn(
                             `w-9 h-9 rounded-full
-              bg-gradient-to-br from-primary-500 to-primary-700
+              bg-gradient-to-br from-accent-primary to-accent-secondary
               flex items-center justify-center
               text-white font-medium text-sm
               shadow-md hover:shadow-lg
               transition-shadow`
                         )}
                     >
-                        U
+                        {userInitial}
                     </button>
                 </div>
             </div>

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type { ReactNode } from 'react';
 import { Sidebar } from './Sidebar';
 import { BottomNav } from './BottomNav';
@@ -21,13 +22,19 @@ export function Layout({
     pageTitle,
     pageSubtitle,
 }: LayoutProps) {
+    const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+
     return (
         <div className="min-h-screen bg-bg-primary">
             {/* Desktop Sidebar */}
-            <Sidebar currentPage={currentPage} onNavigate={onNavigate} />
+            <Sidebar
+                currentPage={currentPage}
+                onNavigate={onNavigate}
+                onCollapseChange={setIsSidebarCollapsed}
+            />
 
             {/* Main Content */}
-            <div className={cn('md:ml-64 min-h-screen flex flex-col')}>
+            <div className={cn('min-h-screen flex flex-col transition-all duration-300', isSidebarCollapsed ? 'md:ml-16' : 'md:ml-64')}>
                 <Header title={pageTitle} subtitle={pageSubtitle} />
 
                 <main className="flex-1 p-4 md:p-6 pb-24 md:pb-6">
