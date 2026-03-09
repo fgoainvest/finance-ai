@@ -5,6 +5,8 @@ import { loadState, saveState, transactionService, accountService, categoryServi
 import { syncService } from '@/services/syncService';
 import { useAuth } from '@/contexts/AuthContext';
 import { recurringProcessor } from '@/services/recurring';
+import rawCsv from '@/data/transacoes_organizadas.csv?raw';
+import { FGOA_ACCOUNTS, getFgoaTransactions } from '@/data/fgoainvest';
 
 // ===== Actions =====
 type Action =
@@ -102,14 +104,34 @@ export function AppProvider({ children }: AppProviderProps) {
         dispatch({ type: 'CHECK_RECURRING_RULES' });
     }, []);
 
+    // Specific user initialized data
+    useEffect(() => {
+        if (auth.user?.email === 'fgoainvest@gmail.com' && state.accounts.length === 0) {
+            console.log("Inicializando dados do fgoainvest...");
+            FGOA_ACCOUNTS.forEach(acc => {
+                dispatch({ type: 'ADD_ACCOUNT', payload: acc });
+            });
+            const transactions: any[] = getFgoaTransactions(rawCsv as string) as any[];
+            if (transactions && transactions.length > 0) {
+                dispatch({ type: 'BATCH_IMPORT_TRANSACTIONS', payload: transactions });
+            }
+        }
+    }, [auth.user, state.accounts.length]);
+
     // Save state to localStorage on changes
     useEffect(() => {
-        saveState(state);
-    }, [state]);
+        saveState(state, auth.user?.id);
+    }, [state, auth.user?.id]);
+
+    // Load state when user changes to ensure isolation
+    useEffect(() => {
+        const initialState = loadState(auth.user?.id);
+        dispatch({ type: 'LOAD_STATE', payload: initialState });
+    }, [auth.user?.id]);
 
     // Automatic background sync to Supabase when state changes
     useEffect(() => {
-        const { user } = auth; // We'll need to get auth from somewhere or pass it
+        const { user } = auth;
         if (!user) return;
 
         const timer = setTimeout(async () => {

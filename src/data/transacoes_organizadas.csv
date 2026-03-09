@@ -1,0 +1,255 @@
+account,amount,currency,title,date,income,category name
+Picpay,-1000.0,BRL,Empréstimo Samuel,2026-03-09 10:11:11,False,Empréstimo
+Picpay,-164.41,BRL,Supermercado,2026-03-09 10:10:34,False,Mantimentos
+99Pay,-37.0,BRL,99food,2026-03-08 22:25:43,False,Lazer
+99Pay,-30.0,BRL,Oferta,2026-03-08 22:21:20,False,Presentes
+Picpay,-89.9,BRL,Leite,2026-03-08 22:20:49,False,Davi
+Mercado Pago,-5.0,BRL,Estacionamento,2026-03-07 18:33:35,False,Lazer
+Mercado Pago,-9.0,BRL,Sorvete,2026-03-07 18:33:06,False,Lazer
+Mercado Pago,-2.0,BRL,Estacionamento,2026-03-07 18:32:55,False,Lazer
+Picpay,-100.0,BRL,Combustível,2026-03-07 17:26:37,False,Trânsito
+Mercado Pago,-9.98,BRL,Pão,2026-03-06 18:34:00,False,Mantimentos
+Picpay,-8.5,BRL,Seguro carteira,2026-03-06 17:27:30,False,Correção do equilíbrio
+Picpay,-53.22,BRL,Trae,2026-03-06 17:25:00,False,Trabalho
+Picpay,-41.82,BRL,Costela,2026-03-06 17:25:00,False,Mantimentos
+Picpay,-35.0,BRL,Batata marechal,2026-03-05 17:23:00,False,Mantimentos
+Picpay,-30.5,BRL,Estacionamento,2026-03-05 17:22:07,False,Lazer
+Picpay,-21.9,BRL,Cosechas,2026-03-05 17:21:35,False,Lazer
+Picpay,-100.0,BRL,Combustível,2026-03-05 17:20:00,False,Trânsito
+99Pay,5.0,BRL,Rendimentos,2026-03-05 15:23:58,True,Rendimentos
+99Pay,-491.37,BRL,Plano de Saúde,2026-03-05 15:22:47,False,Saude
+Mercado Pago,-17.98,BRL,Amigão,2026-03-04 18:40:07,False,Lazer
+Mercado Pago,-9.0,BRL,Sorvete,2026-03-04 18:39:00,False,Lazer
+Mercado Pago,-18.0,BRL,,2026-03-04 18:37:00,False,Lazer
+Mercado Pago,-5.99,BRL,Pão,2026-03-04 18:35:57,False,Mantimentos
+Picpay,-13.5,BRL,,2026-03-04 17:19:00,False,Compras
+Picpay,-29.98,BRL,Amigão,2026-03-04 17:17:00,False,Lazer
+99Pay,-500.0,BRL,Pedreiro,2026-03-04 13:25:14,False,Casa
+99Pay,-121.0,BRL,Material de construção,2026-03-03 15:17:33,False,Casa
+99Pay,-43.8,BRL,Plano Dental,2026-03-02 15:21:00,False,Saude
+Mercado Pago,-30.0,BRL,Revista GF,2026-03-02 12:20:11,False,Compras
+Mercado Pago,-14.0,BRL,Rodo,2026-03-02 12:18:57,False,Casa
+Mercado Pago,20.0,BRL,Salgados circo,2026-03-02 12:15:54,True,Empréstimo
+Mercado Pago,-518.77,BRL,Supermercado,2026-03-01 12:21:00,False,Mantimentos
+Mercado Pago,-44.9,BRL,Netflix,2026-03-01 12:20:00,False,Lazer
+99Pay,-15.0,BRL,Oferta,2026-03-01 09:22:56,False,Presentes
+99Pay,-348.4,BRL,Troca de velas e cabos,2026-02-28 14:07:19,False,Trânsito
+Picpay,-34.0,BRL,Frango assado,2026-02-28 14:02:47,False,Mantimentos
+Mercado Pago,-30.92,BRL,Openrouter,2026-02-28 12:25:54,False,Trabalho
+Mercado Pago,-10.0,BRL,Ração,2026-02-28 12:24:43,False,Casa
+Mercado Pago,-39.97,BRL,Americanas,2026-02-28 12:23:20,False,Lazer
+Mercado Pago,-7.0,BRL,Estacionamento,2026-02-28 12:22:45,False,Lazer
+Mercado Pago,-60.0,BRL,Pizza,2026-02-28 12:22:03,False,Jantar
+Mercado Pago,30.0,BRL,Circo Paula,2026-02-28 12:15:00,True,Empréstimo
+Mercado Pago,40.0,BRL,Circo Rafaela,2026-02-28 12:14:00,True,Empréstimo
+Picpay,-52.29,BRL,Remédio Davi Dente,2026-02-28 12:05:00,False,Davi
+99Pay,-80.0,BRL,Circo,2026-02-28 09:23:00,False,Lazer
+Picpay,-2.5,BRL,Pão,2026-02-27 13:24:09,False,Mantimentos
+Picpay,-50.0,BRL,Combustível,2026-02-27 13:23:12,False,Trânsito
+Picpay,-31.0,BRL,Churrasquinho,2026-02-27 13:21:41,False,Mantimentos
+Picpay,-16.18,BRL,Trae,2026-02-27 13:21:18,False,Trabalho
+99Pay,-19.0,BRL,Oferta,2026-02-26 14:06:00,False,Presentes
+99Pay,-43.05,BRL,99food,2026-02-25 14:05:00,False,Lazer
+99Pay,-253.0,BRL,Material de construção,2026-02-25 14:04:45,False,Casa
+Picpay,313.77,BRL,Pagamento Cartão PP,2026-02-25 11:04:31,True,Correção do equilíbrio
+99Pay,-313.77,BRL,Pagamento Cartão PP,2026-02-25 11:04:30,False,Correção do equilíbrio
+99Pay,2578.94,BRL,Distribuição de lucros,2026-02-25 11:03:31,True,Correção do equilíbrio
+NuPj,-2578.94,BRL,Distribuição de lucros,2026-02-25 11:03:30,False,Correção do equilíbrio
+Picpay,3081.2,BRL,Pagamento Cartão PP,2026-02-25 10:43:31,True,Correção do equilíbrio
+Mercado Pago,-3081.2,BRL,Pagamento Cartão PP,2026-02-25 10:43:30,False,Correção do equilíbrio
+Mercado Pago,-30.99,BRL,Tim,2026-02-25 10:41:18,False,Trabalho
+Picpay,-244.4,BRL,Troca de óleo e filtro de combustível,2026-02-25 10:24:36,False,Trânsito
+Picpay,-88.82,BRL,Leite,2026-02-25 10:24:06,False,Davi
+Mercado Pago,-4.0,BRL,Pão,2026-02-24 10:59:00,False,Mantimentos
+Mercado Pago,-8.0,BRL,Pipocamana,2026-02-24 10:58:00,False,Lazer
+Mercado Pago,-30.98,BRL,Openrouter,2026-02-23 10:57:45,False,Trabalho
+Mercado Pago,-6.5,BRL,Pão,2026-02-23 10:57:00,False,Mantimentos
+Mercado Pago,-82.95,BRL,Supermercado,2026-02-23 10:56:00,False,Mantimentos
+NuPj,3000.0,BRL,SCMR LAFTECH,2026-02-23 07:19:57,True,Trabalho
+Picpay,-23.02,BRL,Soro,2026-02-22 19:11:08,False,Saude
+Picpay,-100.0,BRL,Combustível,2026-02-22 19:10:41,False,Trânsito
+Mercado Pago,-334.0,BRL,Concerto Clio,2026-02-21 20:24:07,False,Trânsito
+Mercado Pago,-33.34,BRL,99food,2026-02-21 20:20:18,False,Lazer
+Mercado Pago,-9.9,BRL,Meli+,2026-02-21 20:19:39,False,Contas e taxas
+Mercado Pago,-7.0,BRL,Estacionamento,2026-02-21 20:18:12,False,Lazer
+Mercado Pago,-5.0,BRL,Estacionamento,2026-02-21 20:17:47,False,Saude
+Picpay,-302.29,BRL,Vps,2026-02-21 20:12:39,False,Trabalho
+Picpay,-2.35,BRL,Biscoito,2026-02-21 20:12:25,False,Mantimentos
+Picpay,-11.0,BRL,Lâmpadas,2026-02-21 20:11:23,False,Casa
+Picpay,-50.0,BRL,Combustível,2026-02-21 20:10:54,False,Trânsito
+Mercado Pago,-8.0,BRL,Açaí,2026-02-21 10:55:18,False,Lazer
+Mercado Pago,-4.0,BRL,Pão,2026-02-21 10:54:26,False,Mantimentos
+Mercado Pago,-30.0,BRL,Frango assado,2026-02-21 10:52:00,False,Mantimentos
+99Pay,-7.2,BRL,Uber,2026-02-20 15:02:00,False,Trabalho
+NuPj,2200.0,BRL,BIODELIC,2026-02-20 13:29:14,True,Renda
+Mercado Pago,-135.33,BRL,Supabase,2026-02-20 10:51:20,False,Trabalho
+Mercado Pago,3135.33,BRL,PlannerPro,2026-02-20 07:17:49,True,Renda
+Mercado Pago,-10.0,BRL,Ração,2026-02-19 10:50:00,False,Casa
+Mercado Pago,-41.65,BRL,Raia Farmácia,2026-02-19 10:49:03,False,Saude
+Mercado Pago,1442.69,BRL,Pro Labore,2026-02-19 10:48:31,True,Correção do equilíbrio
+NuPj,-1442.69,BRL,Pro Labore,2026-02-19 10:48:30,False,Correção do equilíbrio
+Mercado Pago,-165.0,BRL,Ortopedista Adriana,2026-02-19 10:47:10,False,Saude
+NuPj,-178.31,BRL,INSS,2026-02-19 09:15:00,False,Trabalho
+Picpay,-79.9,BRL,Internet,2026-02-18 10:23:08,False,Casa
+Mercado Pago,300.0,BRL,Curso P/ Samuel,2026-02-17 13:22:31,True,Contas e taxas
+Picpay,-97.78,BRL,Supermercado,2026-02-16 20:13:10,False,Mantimentos
+Picpay,-7.92,BRL,Uber,2026-02-16 20:12:33,False,Trabalho
+Picpay,-445.18,BRL,Supermercado,2026-02-16 20:08:16,False,Mantimentos
+Picpay,-8.0,BRL,Lanche,2026-02-15 12:11:27,False,Trabalho
+NuPj,-369.0,BRL,Contabilizei,2026-02-15 11:09:00,False,Trabalho
+Picpay,-12.0,BRL,Cosechas,2026-02-14 22:12:34,False,Lazer
+Picpay,-6.91,BRL,Uber,2026-02-14 22:12:19,False,Trabalho
+Picpay,-3.0,BRL,Guaravita,2026-02-13 20:52:38,False,Trabalho
+99Pay,-5.0,BRL,Uber,2026-02-13 20:31:25,False,Trabalho
+99Pay,-4.7,BRL,Uber,2026-02-13 20:31:16,False,Trabalho
+Picpay,-33.9,BRL,Almoço,2026-02-13 20:29:51,False,Trabalho
+Picpay,-20.0,BRL,JAÉ,2026-02-13 20:26:06,False,Trabalho
+Picpay,-100.0,BRL,Leite,2026-02-13 20:25:32,False,Davi
+Picpay,-50.0,BRL,Baixinho Água,2026-02-13 20:25:00,False,Casa
+99Pay,-5.5,BRL,Uber,2026-02-13 11:01:00,False,Trabalho
+Picpay,-3.0,BRL,Graravita,2026-02-12 19:42:07,False,Trabalho
+Picpay,-38.0,BRL,Almoço,2026-02-12 17:06:03,False,Trabalho
+Mercado Pago,-34.70000000000073,BRL,,2026-02-12 07:17:30,False,Correção do equilíbrio
+Mercado Pago,-12.99,BRL,Tids,2026-02-12 07:16:35,False,Escola
+Mercado Pago,-59.99,BRL,Sapato Lucas,2026-02-12 07:08:55,False,Escola
+Mercado Pago,-50.0,BRL,Combustível,2026-02-12 07:08:29,False,Trânsito
+Mercado Pago,-12.7,BRL,Frutas,2026-02-12 07:07:34,False,Mantimentos
+Mercado Pago,-9.58,BRL,Supermercado,2026-02-12 07:07:05,False,Mantimentos
+Mercado Pago,-20.0,BRL,Açaí,2026-02-12 07:06:38,False,Lazer
+Picpay,-60.0,BRL,Adriana,2026-02-12 07:05:46,False,Adriana
+Picpay,-30.0,BRL,JAÉ,2026-02-12 07:04:50,False,Trabalho
+Picpay,-5.92,BRL,Uber,2026-02-12 07:01:41,False,Trabalho
+Picpay,-106.51,BRL,Seguro de vida,2026-02-12 07:01:04,False,Saude
+Picpay,-36.0,BRL,Marmita,2026-02-12 07:00:52,False,Mantimentos
+Picpay,-100.0,BRL,Combustível,2026-02-12 07:00:34,False,Trânsito
+Picpay,-11.5,BRL,Casechas,2026-02-12 06:59:32,False,Lazer
+NuPj,-53.21,BRL,DAS MEI,2026-02-11 11:11:00,False,Contas e taxas
+99Pay,-57.29000000000021,BRL,,2026-02-09 20:45:30,False,Correção do equilíbrio
+99Pay,-20.0,BRL,JAÉ,2026-02-09 20:43:08,False,Trabalho
+99Pay,-5.0,BRL,Oferta,2026-02-09 20:41:30,False,Correção do equilíbrio
+99Pay,-11.02,BRL,Joelho de 50 pai,2026-02-09 20:40:00,False,Casa
+Picpay,-316.13,BRL,Escola das crianças,2026-02-09 20:38:31,False,Escola
+Picpay,-124.0,BRL,Material de construção,2026-02-09 20:38:06,False,Casa
+Picpay,-30.0,BRL,Frango assado,2026-02-08 14:50:44,False,Mantimentos
+Picpay,-338.75,BRL,Supermercado,2026-02-08 14:50:06,False,Mantimentos
+Picpay,-50.0,BRL,Combustível,2026-02-08 14:49:53,False,Trânsito
+Picpay,-12.0,BRL,Açaí,2026-02-08 14:49:27,False,Lazer
+Picpay,-24.98,BRL,Almoço,2026-02-08 14:48:52,False,Trabalho
+Picpay,-3.0,BRL,Café,2026-02-08 14:48:35,False,Trabalho
+Picpay,-7.92,BRL,Uber,2026-02-08 14:48:18,False,Trabalho
+Picpay,-6.91,BRL,Uber,2026-02-08 14:47:58,False,Trabalho
+99Pay,111.5,BRL,Transferência,2026-02-07 13:16:31,True,Correção do equilíbrio
+Picpay,-111.5,BRL,Transferência,2026-02-07 13:16:30,False,Correção do equilíbrio
+Picpay,-8.5,BRL,Seguro pp,2026-02-06 05:41:08,False,Contas e taxas
+Picpay,-20.0,BRL,Pizza,2026-02-06 05:40:44,False,Jantar
+Picpay,-6.28,BRL,Uber,2026-02-06 05:34:35,False,Trabalho
+Picpay,-5.52,BRL,Uber,2026-02-06 05:34:04,False,Trabalho
+Picpay,-16.48,BRL,Trae,2026-02-06 05:33:51,False,Trabalho
+Picpay,-8.18,BRL,Sobremesa,2026-02-06 05:33:23,False,Trabalho
+Picpay,-16.99,BRL,Almoço,2026-02-06 05:32:47,False,Trabalho
+Picpay,-4.72,BRL,Uber,2026-02-06 05:32:33,False,Trabalho
+Picpay,-6.5,BRL,Preservativo,2026-02-06 05:30:26,False,Saude
+Picpay,-4.74,BRL,Uber,2026-02-06 05:28:53,False,Trabalho
+Picpay,-60.0,BRL,Supermercado,2026-02-04 18:29:36,False,Mantimentos
+Picpay,-35.0,BRL,Almoço,2026-02-04 18:28:18,False,Trabalho
+NuBank,-0.1699999999999768,BRL,,2026-02-04 10:23:30,False,Correção do equilíbrio
+NuBank,-100.0,BRL,PG Mercado pago,2026-02-04 10:20:49,False,Contas e taxas
+NuBank,-25.0,BRL,JAÉ,2026-02-04 07:14:59,False,Trabalho
+Picpay,-4.72,BRL,Uber,2026-02-04 05:33:47,False,Trabalho
+Picpay,-38.39,BRL,Trae,2026-02-04 05:33:10,False,Trabalho
+Picpay,-25.89,BRL,Almoço,2026-02-04 05:32:03,False,Trabalho
+Picpay,-5.53,BRL,Uber,2026-02-04 05:31:28,False,Trabalho
+Picpay,-36.0,BRL,Almoço,2026-02-02 13:46:02,False,Trabalho
+Picpay,-114.89,BRL,Ração a MataPulga,2026-02-02 06:55:49,False,Casa
+Picpay,-15.0,BRL,Tampão Pai,2026-02-02 06:54:10,False,Presentes
+Picpay,-117.15,BRL,Supermercado,2026-02-02 06:52:54,False,Mantimentos
+Picpay,-65.52,BRL,Supermercado,2026-02-02 06:52:13,False,Mantimentos
+Picpay,-14.51,BRL,Supermercado,2026-02-02 06:49:47,False,Mantimentos
+Picpay,-2.0,BRL,Pão,2026-02-02 06:48:38,False,Mantimentos
+Picpay,-58.79,BRL,Cuecas,2026-02-02 06:47:53,False,Compras
+Picpay,-3.73,BRL,Uber Pai,2026-02-02 06:47:12,False,Presentes
+Picpay,-6.5,BRL,Pão,2026-02-02 06:46:44,False,Mantimentos
+Picpay,-289.05,BRL,Supermercado,2026-02-02 06:45:37,False,Mantimentos
+Picpay,-24.0,BRL,Açaí,2026-02-02 06:44:48,False,Lazer
+Picpay,-4.72,BRL,Uber,2026-02-02 06:44:01,False,Trabalho
+NuBank,398.9,BRL,Saque,2026-02-02 06:37:31,True,Correção do equilíbrio
+Clear,-398.9,BRL,Saque,2026-02-02 06:37:30,False,Correção do equilíbrio
+NuBank,-50.0,BRL,Corte Cabelo,2026-02-02 06:36:38,False,Beleza
+Mercado Pago,150.0,BRL,Mercado Pago Transferência para,2026-02-02 06:35:31,True,Correção do equilíbrio
+NuBank,-150.0,BRL,NuBank Transferir de,2026-02-02 06:35:30,False,Correção do equilíbrio
+NuBank,-118.0,BRL,Churrasco Nice,2026-02-02 06:33:57,False,Lazer
+NuBank,-20.0,BRL,JAÉ,2026-02-02 06:32:31,False,Trabalho
+99Pay,-148.0,BRL,Tim Multa,2026-01-30 13:37:48,False,Trabalho
+NuBank,-94.0,BRL,Material de construção,2026-01-30 13:27:32,False,Casa
+NuBank,-44.0,BRL,Plano Dental,2026-01-30 13:26:54,False,Saude
+NuBank,-491.0,BRL,Plano de Saúde,2026-01-30 13:23:16,False,Saude
+Bity,300.0,BRL,Compra Bitcoin,2026-01-30 13:19:31,True,Correção do equilíbrio
+NuBank,-300.0,BRL,Compra Bitcoin,2026-01-30 13:19:30,False,Correção do equilíbrio
+NuBank,1000.0,BRL,NuBank Transferência para,2026-01-30 12:56:31,True,Correção do equilíbrio
+Clear,-1000.0,BRL,Clear Transferir de,2026-01-30 12:56:30,False,Correção do equilíbrio
+NuPj,-500.0,BRL,Contabilidade Fausto,2026-01-30 12:45:44,False,Contas e taxas
+CM Capital,1600.0,BRL,,2026-01-29 21:25:31,True,Correção do equilíbrio
+Picpay,15.0,BRL,Empréstimo Samuel,2026-01-29 21:22:02,True,Empréstimo
+99Pay,-84.0,BRL,Pedra,2026-01-29 21:21:12,False,Casa
+Picpay,-706.0,BRL,Camas Lucas e Davi,2026-01-29 15:26:44,False,Casa
+Picpay,-16.47,BRL,Trae,2026-01-29 15:26:29,False,Trabalho
+Clear,15000.0,BRL,,2026-01-28 20:20:31,True,Correção do equilíbrio
+99Pay,-150.0,BRL,Adriana,2026-01-28 20:17:59,False,Adriana
+99Pay,-150.0,BRL,Pagamento Pai,2026-01-28 20:16:18,False,Casa
+Mercado Pago,-2423.13,BRL,,2026-01-28 20:11:30,False,Correção do equilíbrio
+Mercado Pago,-72.05,BRL,Material Escolar,2026-01-28 20:04:46,False,Escola
+Mercado Pago,-17.98,BRL,Lanche Adriana,2026-01-28 20:03:19,False,Davi
+Mercado Pago,-24.99,BRL,Óleo de coco,2026-01-28 19:47:39,False,Davi
+Mercado Pago,-20.0,BRL,Marmita,2026-01-28 19:46:19,False,Mantimentos
+Mercado Pago,-50.0,BRL,Combustível,2026-01-28 19:44:54,False,Trânsito
+Mercado Pago,-75.89,BRL,Material de construção,2026-01-28 08:50:04,False,Casa
+Mercado Pago,-32.0,BRL,Cimento,2026-01-27 09:37:54,False,Casa
+Picpay,5732.0,BRL,,2026-01-26 07:34:31,True,Correção do equilíbrio
+Picpay,45.0,BRL,,2026-01-26 07:34:31,True,Correção do equilíbrio
+Picpay,-405.0,BRL,,2026-01-26 07:34:30,False,Correção do equilíbrio
+Picpay,5372.0,BRL,,2026-01-26 07:33:31,True,Correção do equilíbrio
+Picpay,-5314.5,BRL,,2026-01-26 07:33:30,False,Correção do equilíbrio
+99Pay,425.5500000000002,BRL,,2026-01-26 07:30:31,True,Correção do equilíbrio
+99Pay,-4711.53,BRL,,2026-01-26 07:25:30,False,Correção do equilíbrio
+Mercado Pago,-626.5300000000002,BRL,,2026-01-26 07:23:30,False,Correção do equilíbrio
+Picpay,-57.5,BRL,Massageador,2026-01-26 07:21:20,False,Presentes
+Mercado Pago,115.0,BRL,Empréstimo Samuel,2026-01-24 21:59:16,True,Empréstimo
+Bity,4269.0,BRL,,2026-01-24 20:29:31,True,Correção do equilíbrio
+Bity,100.0,BRL,Investimento,2026-01-24 20:25:31,True,Correção do equilíbrio
+99Pay,-100.0,BRL,Investimento,2026-01-24 20:25:30,False,Correção do equilíbrio
+Mercado Pago,-93.14,BRL,Hostinguer,2026-01-24 19:39:08,False,Trabalho
+Mercado Pago,-15.57,BRL,Supermercado,2026-01-24 19:33:54,False,Lazer
+Mercado Pago,250.0,BRL,Curso P/ Samuel,2026-01-24 19:32:36,True,Contas e taxas
+NuPj,-52.62,BRL,DAS MEI,2026-01-24 19:23:21,False,Contas e taxas
+NuPj,-52.62,BRL,DAS MEI,2026-01-24 19:22:22,False,Contas e taxas
+99Pay,-305.59,BRL,Assaí,2026-01-23 19:45:50,False,Mantimentos
+99Pay,-200.0,BRL,Pagamento Cartão PP,2026-01-23 19:45:24,False,Compras
+Mercado Pago,-20.0,BRL,Marmita,2026-01-23 19:35:45,False,Mantimentos
+99Pay,-30.99,BRL,Tim,2026-01-22 15:12:09,False,Lazer
+99Pay,-87.6,BRL,Cinema,2026-01-22 15:10:22,False,Lazer
+99Pay,-51.0,BRL,Estacionamento Atrasado,2026-01-22 15:09:32,False,Lazer
+99Pay,-322.93,BRL,Pagamento Cartão PP,2026-01-22 15:07:24,False,Compras
+Mercado Pago,-139.81,BRL,Reembolso Supabase,2026-01-22 15:04:02,False,Trabalho
+Mercado Pago,-27.06,BRL,Supermercado,2026-01-22 15:03:11,False,Lazer
+Mercado Pago,-20.0,BRL,Estacionamento,2026-01-22 15:02:19,False,Lazer
+Mercado Pago,-987.65,BRL,Pagamento Cartão MP,2026-01-22 15:00:53,False,Compras
+Mercado Pago,-785.0,BRL,Livro e Uniforme,2026-01-22 14:51:02,False,Escola
+Mercado Pago,139.21,BRL,Reembolso Supabase,2026-01-21 12:09:08,True,Renda
+Mercado Pago,-20.0,BRL,Marmita,2026-01-20 20:42:06,False,Mantimentos
+99Pay,-37.5,BRL,Pizza,2026-01-20 20:40:44,False,Jantar
+99Pay,2500.0,BRL,Transferência,2026-01-20 20:39:31,True,Correção do equilíbrio
+Mercado Pago,-2500.0,BRL,Transferência,2026-01-20 20:39:30,False,Correção do equilíbrio
+Mercado Pago,-57.0,BRL,Calsa,2026-01-20 20:37:19,False,Compras
+Mercado Pago,-54.0,BRL,"Fio 2,5 m2",2026-01-20 20:31:35,False,Casa
+Picpay,-14.11,BRL,Biscoito,2026-01-20 06:11:55,False,Mantimentos
+Mercado Pago,3000.0,BRL,PlannerPro,2026-01-19 18:14:59,True,Renda
+Mercado Pago,-100.0,BRL,Combustível,2026-01-19 18:14:09,False,Trânsito
+Picpay,-55.9,BRL,Tênis,2026-01-19 09:40:29,False,Escola
+Picpay,-29.99,BRL,Meias Lucas,2026-01-19 09:39:00,False,Escola
+Picpay,100.0,BRL,Transferência,2026-01-19 09:38:31,True,Correção do equilíbrio
+Mercado Pago,-100.0,BRL,Transferência,2026-01-19 09:38:30,False,Correção do equilíbrio
+NuPj,5000.0,BRL,,2026-01-19 08:10:31,True,Correção do equilíbrio
+Mercado Pago,-19.0,BRL,Bolo,2026-01-18 15:50:15,False,Mantimentos
+Mercado Pago,2377.55,BRL,,2026-01-17 20:57:31,True,Correção do equilíbrio
+99Pay,3466.55,BRL,,2026-01-17 20:55:31,True,Correção do equilíbrio
+Mercado Pago,-50.0,BRL,Combustível,2026-01-17 20:30:14,False,Trânsito

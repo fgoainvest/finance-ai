@@ -23,14 +23,22 @@ function getInitialState(): AppState {
 }
 
 /**
+ * Get storage key for a specific user
+ */
+function getStorageKey(userId?: string): string {
+    return userId ? `${STORAGE_KEY}_${userId}` : STORAGE_KEY;
+}
+
+/**
  * Load state from localStorage
  */
-export function loadState(): AppState {
+export function loadState(userId?: string): AppState {
     try {
-        const stored = localStorage.getItem(STORAGE_KEY);
+        const key = getStorageKey(userId);
+        const stored = localStorage.getItem(key);
         if (!stored) {
             const initial = getInitialState();
-            saveState(initial);
+            // We don't save state here to avoid polluting with defaults unless modified
             return initial;
         }
 
@@ -54,9 +62,10 @@ export function loadState(): AppState {
 /**
  * Save state to localStorage
  */
-export function saveState(state: AppState): void {
+export function saveState(state: AppState, userId?: string): void {
     try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        const key = getStorageKey(userId);
+        localStorage.setItem(key, JSON.stringify(state));
     } catch (error) {
         console.error('Failed to save state:', error);
     }
