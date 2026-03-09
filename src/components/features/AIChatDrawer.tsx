@@ -302,7 +302,7 @@ export function AIChatDrawer() {
                 onClick={() => setIsOpen(!isOpen)}
                 aria-label="Abrir Assistente IA"
                 className={cn(
-                    `fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-[0_0_25px_rgba(var(--accent-glow),0.5)] bg-gradient-to-r from-[rgb(var(--accent-primary))] to-[rgb(var(--accent-secondary))] text-white flex items-center justify-center transition-all duration-300`,
+                    `fixed bottom-24 right-6 md:bottom-6 md:right-6 z-50 w-14 h-14 rounded-full shadow-[0_0_25px_rgba(var(--accent-glow),0.5)] bg-gradient-to-r from-[rgb(var(--accent-primary))] to-[rgb(var(--accent-secondary))] text-white flex items-center justify-center transition-all duration-300`,
                     isOpen ? 'scale-0 opacity-0' : 'hover:scale-110 active:scale-95'
                 )}
             >

@@ -13,9 +13,6 @@ export const syncService = {
             const { data: existingCats } = await supabaseService.getCategories();
             const { data: existingAccs } = await supabaseService.getAccounts();
 
-            const existingCatNames = new Set(existingCats?.map(c => c.name.toLowerCase()) || []);
-            const existingAccNames = new Set(existingAccs?.map(a => a.name.toLowerCase()) || []);
-
             // 2. Sync Categories
             const catMap = new Map<string, string>(); // Local ID -> Supabase ID
 
@@ -85,6 +82,7 @@ export const syncService = {
 
             // 4. Transform and Sync Transactions
             const dbTransactions = state.transactions.map(t => ({
+                id: t.id,
                 user_id: userId,
                 account_id: accMap.get(t.accountId) || t.accountId,
                 category_id: catMap.get(t.categoryId) || t.categoryId,
@@ -101,7 +99,7 @@ export const syncService = {
 
             if (dbTransactions.length > 0) {
                 // Batch insert (Supabase handles this well)
-                const { error } = await supabaseService.createTransactionsBatch(dbTransactions);
+                const { error } = await supabaseService.upsertTransactionsBatch(dbTransactions);
                 if (error) throw error;
             }
 

@@ -26,12 +26,19 @@ import {
     TrendingUp,
     RotateCcw,
     Plus,
-    Wallet
+    Wallet,
+    Download,
+    Upload,
+    FileSpreadsheet,
+    FileText
 } from 'lucide-react';
 import { Card, Badge, Button, ConfirmDialog } from '@/components/ui';
+import { ImportMappingModal } from './ImportMappingModal';
 import { useApp } from '@/contexts/AppContext';
 import { useToast } from '@/contexts/ToastContext';
 import { formatCurrency, formatDate, cn } from '@/lib/utils';
+import { ExcelService } from '@/services/ExcelService';
+import type { ColumnMapping } from '@/services/ExcelService';
 import type { Transaction, TransactionType } from '@/types';
 
 // Icon map for dynamic category icon rendering
@@ -72,6 +79,61 @@ export function TransactionsList({ onEdit, onAdd }: TransactionsListProps) {
     const [filterCategory, setFilterCategory] = useState<string>('all');
     const [showFilters, setShowFilters] = useState(false);
     const [deleteId, setDeleteId] = useState<string | null>(null);
+
+    // Excel import state
+    const [importModalOpen, setImportModalOpen] = useState(false);
+    const [excelHeaders, setExcelHeaders] = useState<string[]>([]);
+    const [excelRows, setExcelRows] = useState<any[]>([]);
+
+    const handleExport = () => {
+        ExcelService.exportTransactions(state.transactions, state.accounts, state.categories);
+        showToast('Extrato exportado para Excel', 'success');
+    };
+
+    const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        try {
+            const { headers, rows } = await ExcelService.parseExcel(file);
+            setExcelHeaders(headers);
+            setExcelRows(rows);
+            setImportModalOpen(true);
+            e.target.value = ''; // Reset input
+        } catch (error) {
+            console.error(error);
+            showToast('Erro ao ler arquivo Excel', 'error');
+        }
+    };
+
+    const handleImportConfirm = (rows: any[], mappings: ColumnMapping[]) => {
+        // Find default account and category
+        const defaultAccount = state.accounts[0]?.id || '';
+        const defaultCategory = state.categories.find(c => c.type === 'expense')?.id || '';
+
+        const transactions = ExcelService.mapRowsToTransactions(
+            rows,
+            mappings,
+            'user-id', // Use proper UID if available
+            defaultAccount,
+            defaultCategory
+        );
+
+        transactions.forEach(t => {
+            const { id, createdAt, updatedAt, ...cleanTransaction } = t as any;
+            dispatch({
+                type: 'ADD_TRANSACTION',
+                payload: {
+                    ...cleanTransaction,
+                    date: cleanTransaction.date || new Date().toISOString(),
+                    type: cleanTransaction.type || 'expense'
+                }
+            });
+        });
+
+        setImportModalOpen(false);
+        showToast(`${transactions.length} transações importadas!`, 'success');
+    };
 
     // Filter transactions
     const filteredTransactions = useMemo(() => {
@@ -141,11 +203,36 @@ export function TransactionsList({ onEdit, onAdd }: TransactionsListProps) {
                         Filtros
                     </Button>
 
+                    {/* Excel Actions (Mobile+Desktop) */}
+                    <div className="flex gap-2">
+                        <Button
+                            variant="secondary"
+                            onClick={handleExport}
+                            leftIcon={<Download className="h-4 w-4" />}
+                            className="rounded-xl h-11 border-[rgba(var(--border-primary),0.3)] bg-[rgba(var(--bg-secondary),0.5)] flex-1 sm:flex-none"
+                            title="Exportar Excel"
+                        />
+                        <div className="relative flex-1 sm:flex-none">
+                            <input
+                                type="file"
+                                accept=".xlsx, .xls"
+                                onChange={handleFileSelect}
+                                className="absolute inset-0 opacity-0 cursor-pointer z-10"
+                            />
+                            <Button
+                                variant="secondary"
+                                leftIcon={<Upload className="h-4 w-4" />}
+                                className="rounded-xl h-11 border-[rgba(var(--border-primary),0.3)] bg-[rgba(var(--bg-secondary),0.5)] w-full"
+                                title="Importar Excel"
+                            />
+                        </div>
+                    </div>
+
                     {/* Add Button (Desktop) */}
                     <Button
                         variant="primary"
                         onClick={onAdd}
-                        className="hidden sm:flex rounded-xl h-11 px-6 shadow-[0_0_15px_rgba(var(--accent-glow),0.3)]"
+                        className="hidden sm:flex rounded-xl h-11 px-6 shadow-[0_0_15px_rgba(var(--accent-glow),0.3)] min-w-[160px]"
                     >
                         Nova Transação
                     </Button>
@@ -309,6 +396,14 @@ export function TransactionsList({ onEdit, onAdd }: TransactionsListProps) {
                 message="Tem certeza que deseja excluir esta transação? Esta ação não pode ser desfeita e o saldo das contas será recalculado."
                 confirmLabel="Excluir"
                 variant="danger"
+            />
+
+            <ImportMappingModal
+                isOpen={importModalOpen}
+                onClose={() => setImportModalOpen(false)}
+                headers={excelHeaders}
+                rows={excelRows}
+                onConfirm={handleImportConfirm}
             />
         </div>
     );

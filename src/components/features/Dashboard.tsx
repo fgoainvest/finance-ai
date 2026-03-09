@@ -7,11 +7,19 @@ import {
     ArrowDownRight,
     Clock,
     PieChart as PieChartIcon,
+    Sparkles,
+    Loader2,
+    RefreshCw,
+    ChevronRight,
+    Target,
+    Zap
 } from 'lucide-react';
 import { AreaChart, Area, PieChart, Pie, Cell, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui';
+import ReactMarkdown from 'react-markdown';
+import { Card, CardHeader, CardTitle, CardContent, Button, Badge } from '@/components/ui';
 import { useApp } from '@/contexts/AppContext';
 import { formatCurrency, formatDate, cn } from '@/lib/utils';
+import { aiService } from '@/services/ai';
 
 interface DashboardProps {
     onViewTransactions: () => void;
@@ -30,11 +38,44 @@ export function Dashboard({ onViewTransactions, onAddTransaction }: DashboardPro
     } = useApp();
 
     const [hasMounted, setHasMounted] = useState(false);
+    const [analysis, setAnalysis] = useState<string | null>(null);
+    const [isAnalyzing, setIsAnalyzing] = useState(false);
 
     useEffect(() => {
         const timer = setTimeout(() => setHasMounted(true), 100);
         return () => clearTimeout(timer);
     }, []);
+
+    const fetchAnalysis = async (force = false) => {
+        if (!state.transactions.length) return;
+
+        // Use cached analysis if available and not forcing
+        const cached = localStorage.getItem('dashboard_analysis');
+        if (cached && !force) {
+            setAnalysis(cached);
+            return;
+        }
+
+        setIsAnalyzing(true);
+        try {
+            const result = await aiService.getFinancialAnalysis(state);
+            setAnalysis(result);
+            localStorage.setItem('dashboard_analysis', result);
+            localStorage.setItem('dashboard_analysis_date', new Date().toISOString());
+        } catch (error) {
+            console.error('Failed to fetch analysis:', error);
+        } finally {
+            setIsAnalyzing(false);
+        }
+    };
+
+    useEffect(() => {
+        if (hasMounted) {
+            fetchAnalysis();
+        }
+    }, [hasMounted]);
+
+    const handleRefreshAnalysis = () => fetchAnalysis(true);
 
     const calculateVariation = (current: number, previous: number) => {
         if (previous === 0) return current > 0 ? 100 : 0;
@@ -229,6 +270,79 @@ export function Dashboard({ onViewTransactions, onAddTransaction }: DashboardPro
                         </Card>
                     );
                 })()}
+            </div>
+
+            {/* AI Insights Section */}
+            <div className="relative group">
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-[rgb(var(--accent-primary))] to-[rgb(var(--accent-secondary))] rounded-[2rem] opacity-20 blur group-hover:opacity-30 transition duration-1000"></div>
+                <Card variant="glass" className="relative border-[rgba(var(--border-primary),0.3)] shadow-2xl overflow-hidden min-h-[180px]">
+                    <CardHeader className="flex flex-row items-center justify-between pb-2">
+                        <div className="flex items-center gap-3">
+                            <div className="p-2 bg-[rgba(var(--accent-primary),0.1)] rounded-xl relative overflow-hidden group/star">
+                                <Sparkles className="h-5 w-5 text-[rgb(var(--accent-primary))] relative z-10 group-hover/star:scale-110 transition-transform" />
+                                <div className="absolute inset-0 bg-[rgba(var(--accent-primary),0.2)] animate-pulse" />
+                            </div>
+                            <div>
+                                <CardTitle className="flex items-center gap-2">
+                                    Insights da IA
+                                    <Badge variant="outline" className="bg-[rgba(var(--accent-primary),0.1)] text-[rgb(var(--accent-primary))] border-[rgba(var(--accent-primary),0.2)]">βeta</Badge>
+                                </CardTitle>
+                                <p className="text-xs text-[rgb(var(--text-muted))]">Análise de saúde financeira em tempo real</p>
+                            </div>
+                        </div>
+                        <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={handleRefreshAnalysis}
+                            disabled={isAnalyzing}
+                            className="rounded-xl h-9 hover:bg-[rgba(var(--accent-primary),0.1)] hover:text-[rgb(var(--accent-primary))] transition-all"
+                        >
+                            {isAnalyzing ? <Loader2 className="h-4 w-4 animate-spin" /> : <RefreshCw className="h-4 w-4" />}
+                            <span className="ml-2 hidden sm:inline">Recalcular</span>
+                        </Button>
+                    </CardHeader>
+                    <CardContent className="pt-2">
+                        {isAnalyzing ? (
+                            <div className="py-10 flex flex-col items-center justify-center text-center space-y-4">
+                                <div className="relative h-12 w-12">
+                                    <div className="absolute inset-0 bg-[rgba(var(--accent-primary),0.2)] rounded-full animate-ping" />
+                                    <div className="relative h-12 w-12 flex items-center justify-center bg-[rgba(var(--accent-primary),0.1)] rounded-full border border-[rgba(var(--accent-primary),0.3)]">
+                                        <Sparkles className="h-6 w-6 text-[rgb(var(--accent-primary))] animate-pulse" />
+                                    </div>
+                                </div>
+                                <p className="text-sm font-medium text-[rgb(var(--accent-primary))]">Processando inteligência financeira...</p>
+                            </div>
+                        ) : !analysis ? (
+                            <div className="py-6 text-center border border-dashed border-[rgba(var(--border-primary),0.3)] rounded-2xl">
+                                <Zap className="h-6 w-6 mx-auto text-[rgb(var(--text-muted))] mb-2 opacity-50" />
+                                <p className="text-xs text-[rgb(var(--text-muted))] mb-3">Clique em recalcular para gerar seus insights.</p>
+                                <Button variant="secondary" size="sm" onClick={handleRefreshAnalysis} className="rounded-xl text-xs h-8">
+                                    Gerar Análise
+                                </Button>
+                            </div>
+                        ) : (
+                            <div className="animate-in fade-in slide-in-from-bottom-2 duration-500">
+                                <div className="prose prose-sm dark:prose-invert max-w-none">
+                                    <ReactMarkdown
+                                        components={{
+                                            h1: ({ ...props }) => <h1 className="text-lg font-bold text-[rgb(var(--accent-primary))] mb-2" {...props} />,
+                                            h2: ({ ...props }) => <h2 className="text-sm font-bold text-[rgb(var(--text-primary))] mb-1 mt-3 border-b border-[rgba(var(--border-secondary),0.3)] pb-1" {...props} />,
+                                            p: ({ ...props }) => <p className="mb-2 text-xs text-[rgb(var(--text-secondary))] leading-relaxed" {...props} />,
+                                            ul: ({ ...props }) => <ul className="ml-4 space-y-1 my-2 list-disc font-medium text-[11px] text-[rgb(var(--text-secondary))]" {...props} />,
+                                            li: ({ ...props }) => <li className="mb-0.5" {...props} />,
+                                            strong: ({ ...props }) => <strong className="font-bold text-[rgb(var(--text-primary))]" {...props} />,
+                                            table: ({ ...props }) => <div className="overflow-x-auto my-3"><table className="w-full text-[10px]" {...props} /></div>,
+                                            th: ({ ...props }) => <th className="bg-[rgba(var(--bg-secondary),0.5)] p-1.5 text-left font-bold" {...props} />,
+                                            td: ({ ...props }) => <td className="p-1.5 border-b border-[rgba(var(--border-secondary),0.2)]" {...props} />,
+                                        }}
+                                    >
+                                        {analysis}
+                                    </ReactMarkdown>
+                                </div>
+                            </div>
+                        )}
+                    </CardContent>
+                </Card>
             </div>
 
             {/* Charts Row */}

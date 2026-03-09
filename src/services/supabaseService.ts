@@ -38,10 +38,10 @@ export const supabaseService = {
         return { data, error };
     },
 
-    async createTransactionsBatch(transactions: any[]) {
+    async upsertTransactionsBatch(transactions: any[]) {
         const { data, error } = await supabase
             .from('transactions')
-            .insert(transactions)
+            .upsert(transactions)
             .select();
         return { data, error };
     },

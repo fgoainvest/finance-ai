@@ -90,19 +90,19 @@ export function Header({ title, subtitle, onNavigate }: HeaderProps) {
         <header className="sticky top-0 z-30 bg-bg-primary/80 backdrop-blur-md border-b border-border-secondary">
             <div className="flex items-center justify-between h-16 px-4 md:px-6">
                 {/* Left - Title */}
-                <div className="flex items-center gap-3">
-                    <div className="md:hidden flex items-center gap-2">
+                <div className="flex items-center gap-2 md:gap-3 overflow-hidden">
+                    <div className="md:hidden flex items-center gap-1.5 shrink-0">
                         <Sparkles className="h-5 w-5 text-accent-primary" />
-                        <span className="font-display font-bold text-accent-primary">
+                        <span className="font-display font-bold text-lg text-accent-primary truncate max-w-[120px]">
                             Financeiro
                         </span>
                     </div>
-                    <div className="hidden md:block">
-                        <h1 className="font-display font-semibold text-xl text-text-primary">
+                    <div className="hidden md:block truncate">
+                        <h1 className="font-display font-semibold text-xl text-text-primary truncate">
                             {title}
                         </h1>
                         {subtitle && (
-                            <p className="text-sm text-text-muted">{subtitle}</p>
+                            <p className="text-sm text-text-muted truncate">{subtitle}</p>
                         )}
                     </div>
                 </div>

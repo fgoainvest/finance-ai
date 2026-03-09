@@ -2,6 +2,8 @@ import { createContext, useContext, useReducer, useEffect, useCallback, useMemo 
 import type { ReactNode } from 'react';
 import type { AppState, Transaction, Account, Category, UserSettings, ChatMessage, RecurringRule } from '@/types';
 import { loadState, saveState, transactionService, accountService, categoryService, settingsService, chatService, recurringService, importService } from '@/services/storage';
+import { syncService } from '@/services/syncService';
+import { useAuth } from '@/contexts/AuthContext';
 import { recurringProcessor } from '@/services/recurring';
 
 // ===== Actions =====
@@ -92,6 +94,7 @@ interface AppProviderProps {
 }
 
 export function AppProvider({ children }: AppProviderProps) {
+    const auth = useAuth();
     const [state, dispatch] = useReducer(appReducer, null, () => loadState());
 
     // Check for recurring transactions on mount
@@ -99,10 +102,27 @@ export function AppProvider({ children }: AppProviderProps) {
         dispatch({ type: 'CHECK_RECURRING_RULES' });
     }, []);
 
-    // Save state on changes
+    // Save state to localStorage on changes
     useEffect(() => {
         saveState(state);
     }, [state]);
+
+    // Automatic background sync to Supabase when state changes
+    useEffect(() => {
+        const { user } = auth; // We'll need to get auth from somewhere or pass it
+        if (!user) return;
+
+        const timer = setTimeout(async () => {
+            console.log('🔄 Sincronizando dados com a nuvem automaticamente...');
+            try {
+                await syncService.uploadAllData(state, user.id);
+            } catch (error) {
+                console.error('Falha na sincronização automática:', error);
+            }
+        }, 2000); // Debounce de 2 segundos
+
+        return () => clearTimeout(timer);
+    }, [state, auth.user]);
 
     // Computed values
     const totalBalance = useMemo(() => accountService.getTotalBalance(state), [state]);

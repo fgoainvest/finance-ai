@@ -474,4 +474,63 @@ Responda APENAS com o nome exato de uma das categorias listadas. Sem explicaçõ
             };
         }
     },
+
+    async suggestColumnMapping(
+        fileHeaders: string[],
+        systemFields: string[]
+    ): Promise<Record<string, string>> {
+        if (!fileHeaders.length) return {};
+
+        try {
+            const prompt = `Analise os cabeçalhos de uma planilha Excel e sugira o mapeamento para os campos do nosso sistema financeiro.
+
+Cabeçalhos da Planilha:
+- ${fileHeaders.join('\n- ')}
+
+Campos do Sistema:
+- ${systemFields.join('\n- ')}
+
+Baseado nos nomes, sugira para cada cabeçalho qual é o campo do sistema correspondente. Se não houver correspondência clara, use "ignore".
+Responda APENAS com um JSON puro no formato { "cabeçalho": "campo_sistema" }. Sem explicações.`;
+
+            const { message } = await callOpenRouter([
+                { role: 'system', content: 'Você é um assistente especialista em mapeamento de dados.' },
+                { role: 'user', content: prompt }
+            ]);
+
+            const text = extractTextContent(message.content);
+            const jsonStr = text.match(/\{[\s\S]*\}/)?.[0] || '{}';
+            return JSON.parse(jsonStr);
+        } catch (error) {
+            console.error('AI Mapping error:', error);
+            return {};
+        }
+    },
+
+    async getFinancialAnalysis(state: AppState): Promise<string> {
+        try {
+            const financialContext = buildFinancialContext(state);
+            const prompt = `${financialContext}
+
+Com base nos dados acima, forneça uma análise financeira COMPLETA e PROFISSIONAL.
+A análise deve incluir obrigatoriamente:
+1. **Saúde Financeira**: Uma nota de 0 a 10 e breve justificativa.
+2. **Tendências**: Como o usuário está gastando em comparação ao volume de transações.
+3. **Previsão**: Quanto ele deve ter de saldo ao final do mês se mantiver o ritmo.
+4. **Alertas e Dicas**: 3 dicas acionáveis para economizar agora mesmo.
+5. **Anomalias**: Identifique gastos fora do comum ou recorrentes que podem ser otimizados.
+
+Responda em PORTUGUÊS (BR) usando Markdown rico com emojis e tabelas se necessário.`;
+
+            const { message } = await callOpenRouter([
+                { role: 'system', content: 'Você é um Analista Financeiro Sênior com IA.' },
+                { role: 'user', content: prompt }
+            ]);
+
+            return extractTextContent(message.content) || 'Não foi possível gerar a análise no momento.';
+        } catch (error) {
+            console.error('AI Analysis error:', error);
+            return 'Erro ao gerar análise financeira. Verifique sua conexão e chave de API.';
+        }
+    },
 };
